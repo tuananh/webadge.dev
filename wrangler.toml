@@ -1,0 +1,15 @@
+name = "worker-badge"
+type = "webpack"
+webpack_config = "webpack.config.js"
+account_id = "e8ff9c2855e44e717fff487f7627b58f"
+workers_dev = true
+
+[env.staging]
+name = "badge-staging"
+zone_id = "047c8ea67667f0773e8c6d162b2dd285"
+route = "badge-staging.tuananh.net/*"
+
+[env.production]
+name = "badge-production"
+zone_id = "047c8ea67667f0773e8c6d162b2dd285"
+route = "badge.tuananh.net/*"
