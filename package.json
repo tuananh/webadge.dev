@@ -1,0 +1,21 @@
+{
+  "name": "worker-badge",
+  "version": "0.0.1",
+  "description": "Badges with Cloudflare Workers",
+  "main": "dist/main.js",
+  "entrypoint": "/dist/main.js",
+  "scripts": {
+    "build": "webpack index.js"
+  },
+  "keywords": [
+    "cloudflare-worker",
+    "badges"
+  ],
+  "author": "Tuan Anh Tran <me@tuananh.org>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
+  }
+}
