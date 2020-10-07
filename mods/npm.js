@@ -61,21 +61,33 @@ async function handleNpm(request) {
         const pkgName = parts[3]
         switch (type) {
             case 'v':
-                const val = await cachedExecute({
-                    key: pathname,
-                    json: true,
-                    loadFn: async () => {
-                        const resp = await fetch(
-                            `https://registry.npmjs.org/-/package/${pkgName}/dist-tags`
-                        )
-                        if (resp.status === 200) {
-                            return resp.json()
-                        }
-
-                        throw new Error('bad response from npm')
-                    },
-                })
-                return serveBadge({ label: 'npm', status: val.latest })
+                try {
+                    const val = await cachedExecute({
+                        key: pathname,
+                        json: true,
+                        loadFn: async () => {
+                            const resp = await fetch(
+                                `https://registry.npmjs.org/-/package/${pkgName}/dist-tags`
+                            )
+                            if (resp.status === 200) {
+                                return resp.json()
+                            }
+    
+                            if (resp.status === 404) {
+                                throw new Error('pkg not found')
+                            }
+    
+                            throw new Error('bad response from npm')
+                        },
+                    })
+                    return serveBadge({ label: 'npm', status: val.latest })
+                } catch (err) {
+                    if (err.message === 'pkg not found') {
+                        return serveBadge({ label: 'npm', status: 'pkg not found' })
+                    } else {
+                        return serveBadge({ label: 'npm', status: 'unknown' })
+                    }
+                }
             case 'license':
                 const info = await cachedExecute({
                     key: pathname,

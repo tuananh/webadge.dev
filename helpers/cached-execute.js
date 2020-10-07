@@ -5,9 +5,11 @@ async function cachedExecute({ key, loadFn, json }) {
     if (value === null) {
         try {
             value = await loadFn()
-            await badgeKV.put(key, JSON.stringify(value), {
-                expirationTtl: config.defaultCacheDurationSecond
-            })
+            if (value) {
+                badgeKV.put(key, JSON.stringify(value), {
+                    expirationTtl: config.defaultCacheDurationSecond
+                })
+            }
             return value
         } catch (err) {
             console.log('error in ' + loadFn.name)
