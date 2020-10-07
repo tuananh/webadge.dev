@@ -1,5 +1,5 @@
 import Router from './router'
-import handleNpmVersion from './mods/npm-version'
+import handleNpmVersion from './mods/npm'
 import handlePackagephobiaPublishSize from './mods/bundlephobia'
 
 addEventListener('fetch', (event) => {
@@ -8,7 +8,7 @@ addEventListener('fetch', (event) => {
 
 async function handleRequest(request) {
   const r = new Router()
-  r.get('.*/npm/v/.*', () => handleNpmVersion(request))
+  r.get('.*/npm/.*', () => handleNpmVersion(request))
   r.get('.*/bundlephobia/.*', () => handlePackagephobiaPublishSize(request))
 
   r.get('/', () => new Response('default backend - 404'))
