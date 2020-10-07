@@ -2,6 +2,7 @@ import Router from './router'
 import handleNpm from './mods/npm'
 import handlePackagephobia from './mods/bundlephobia'
 import handleTravisCI from './mods/travis'
+import handleAppveyor from './mods/appveyor'
 
 addEventListener('fetch', (event) => {
     event.respondWith(handleRequest(event.request))
@@ -12,6 +13,7 @@ async function handleRequest(request) {
   r.get('.*/npm/.*', () => handleNpm(request))
   r.get('.*/bundlephobia/.*', () => handlePackagephobia(request))
   r.get('.*/travis/.*', () => handleTravisCI(request))
+  r.get('.*/appveyor/.*', () => handleAppveyor(request))
 
   r.get('/', () => new Response('default backend - 404'))
 
