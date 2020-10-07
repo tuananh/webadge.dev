@@ -1,6 +1,7 @@
 import Router from './router'
-import handleNpmVersion from './mods/npm'
-import handlePackagephobiaPublishSize from './mods/bundlephobia'
+import handleNpm from './mods/npm'
+import handlePackagephobia from './mods/bundlephobia'
+import handleTravisCI from './mods/travis'
 
 addEventListener('fetch', (event) => {
     event.respondWith(handleRequest(event.request))
@@ -8,8 +9,9 @@ addEventListener('fetch', (event) => {
 
 async function handleRequest(request) {
   const r = new Router()
-  r.get('.*/npm/.*', () => handleNpmVersion(request))
-  r.get('.*/bundlephobia/.*', () => handlePackagephobiaPublishSize(request))
+  r.get('.*/npm/.*', () => handleNpm(request))
+  r.get('.*/bundlephobia/.*', () => handlePackagephobia(request))
+  r.get('.*/travis/.*', () => handleTravisCI(request))
 
   r.get('/', () => new Response('default backend - 404'))
 

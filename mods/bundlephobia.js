@@ -1,6 +1,6 @@
 import serveBadge from '../helpers/serve-badge'
 
-async function handlePackagephobiaPublishSize(request) {
+async function handlePackagephobia(request) {
     const { pathname } = new URL(request.url)
     const parts = pathname.split('/')
     console.log(parts)
@@ -38,4 +38,4 @@ async function handlePackagephobiaPublishSize(request) {
     return new Response('bad bad request')
 }
 
-export default handlePackagephobiaPublishSize
+export default handlePackagephobia

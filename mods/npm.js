@@ -56,7 +56,6 @@ async function typesDefinition(pkgName, tag = 'latest') {
 async function handleNpm(request) {
     const { pathname } = new URL(request.url)
     const parts = pathname.split('/')
-    console.log(parts)
     if (parts.length > 3) {
         const type = parts[2]
         const pkgName = parts[3]

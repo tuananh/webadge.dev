@@ -1,4 +1,4 @@
-import ms from 'ms'
+import config from '../config'
 
 async function cachedExecute({ key, loadFn, json }) {
     let value = await badgeKV.get(key)
@@ -6,7 +6,7 @@ async function cachedExecute({ key, loadFn, json }) {
         try {
             value = await loadFn()
             await badgeKV.put(key, JSON.stringify(value), {
-                expirationTtl: ms('1d') / 1000,
+                expirationTtl: config.defaultCacheDurationSecond
             })
             return value
         } catch (err) {
