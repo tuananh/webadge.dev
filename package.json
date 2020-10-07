@@ -13,7 +13,9 @@
   ],
   "author": "Tuan Anh Tran <me@tuananh.org>",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "badgen": "^3.2.1"
+  },
   "devDependencies": {
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
