@@ -115,7 +115,7 @@ async function handleNpm(request) {
         }
     }
 
-    return new Response('bad bad request')
+    return serveBadge({ label: 'npm', status: 'unknown topic', color: 'grey' })
 }
 
 export default handleNpm
