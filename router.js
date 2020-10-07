@@ -90,9 +90,9 @@ class Router {
             return route.handler(req)
         }
 
-        return new Response('resource not found', {
+        return new Response('default backend - 404', {
             status: 404,
-            statusText: 'not found',
+            statusText: 'default backend - 404',
             headers: {
                 'content-type': 'text/plain',
             },
