@@ -9,7 +9,7 @@ addEventListener('fetch', (event) => {
 async function handleRequest(request) {
   const r = new Router()
   r.get('.*/npm/v/.*', () => handleNpmVersion(request))
-  r.get('.*/packagephobia/publish/.*', () => handlePackagephobiaPublishSize(request))
+  r.get('.*/bundlephobia/.*', () => handlePackagephobiaPublishSize(request))
 
   r.get('/', () => new Response('default backend - 404'))
 
