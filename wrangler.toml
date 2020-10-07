@@ -4,7 +4,7 @@ webpack_config = "webpack.config.js"
 account_id = "e8ff9c2855e44e717fff487f7627b58f"
 workers_dev = true
 kv-namespaces = [ 
-    { binding = "badgeKV", id = "f30cab6849f94377817939fb4acbc559", preview_id = "f30cab6849f94377817939fb4acbc559"} 
+    { binding = "badgeKV", id = "f30cab6849f94377817939fb4acbc559", preview_id = "62c36c2bf8bc4ef78ea69fe2e83a10f4"} 
 ]
 
 [env.staging]

@@ -75,14 +75,14 @@ async function handleNpm(request) {
                         throw new Error('bad response from npm')
                     },
                 })
-                return generateBadge({ status: val.latest })
+                return serveBadge({ label: 'npm', status: val.latest })
             case 'license':
                 const info = await cachedExecute({
                     key: pathname,
                     json: true,
                     loadFn: async () => pkgJson(pkgName, 'latest'),
                 })
-                return generateBadge({ label: 'license', status: info.license })
+                return serveBadge({ label: 'license', status: info.license })
             case 'dw':
             case 'dm':
             case 'dy':
@@ -91,19 +91,19 @@ async function handleNpm(request) {
                 const def = await cachedExecute({
                     key: pathname,
                     json: true,
-                    loadFn: async () => typesDefinition(pkgName, 'latest')
+                    loadFn: async () => typesDefinition(pkgName, 'latest'),
                 })
-                return generateBadge({...def, label: 'types'})
+                return serveBadge({ ...def, label: 'types' })
             default:
-                return generateBadge({status: 'unknown topic', color: 'grey'})
+                return serveBadge({
+                    label: 'npm',
+                    status: 'unknown topic',
+                    color: 'grey',
+                })
         }
     }
 
     return new Response('bad bad request')
-}
-
-const generateBadge = async (badgenOpts) => {
-    return serveBadge(badgenOpts)
 }
 
 export default handleNpm
