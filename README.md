@@ -11,11 +11,12 @@ The goal is
 * extremely fast.
 * use Cloudflare Workers tech only for learning purpose.
 
-## Currently Supported badges
+## Currently supported badges
 
-|               Badge | Preview                                                              |
-|--------------------:|----------------------------------------------------------------------|
-| npm version         | ![](https://badge-staging.tuananh.net/npm/v/camaro)                  |
-| npm license         | ![](https://badge-staging.tuananh.net/npm/license/camaro)            |
+|               Badge | Preview                                                             |
+|--------------------:|---------------------------------------------------------------------|
+| npm version         | ![](https://badge-staging.tuananh.net/npm/v/camaro)                 |
+| npm license         | ![](https://badge-staging.tuananh.net/npm/license/camaro)           |
+| npm types           | ![](https://badge-staging.tuananh.net/npm/types/camaro)             |
 | bundlephobia min    | ![]( https://badge-staging.tuananh.net/bundlephobia/min/camaro )    |
 | bundlephobia minzip | ![]( https://badge-staging.tuananh.net/bundlephobia/minzip/camaro ) |
