@@ -1,4 +1,5 @@
 import serveBadge from '../helpers/serve-badge'
+import cachedExecute from '../helpers/cached-execute'
 
 async function handleNpmVersion(request) {
     const { pathname } = new URL(request.url)
@@ -6,19 +7,22 @@ async function handleNpmVersion(request) {
     console.log(parts)
     if (parts.length > 3) {
         const pkgName = parts[3]
-        const resp = await fetch(
-            `https://registry.npmjs.org/-/package/${pkgName}/dist-tags`
-        )
-        // TODO(anh): cache response
-        if (resp.status === 200) {
-            const json = await resp.json()
-            return generateBadge({ status: json.latest })
-        } else {
-            return new Response(
-                'bad bad response from npm, got ' +
-                    JSON.stringify(json, null, 2)
-            )
-        }
+        const val = await cachedExecute({
+            key: pathname,
+            json: true,
+            loadFn: async () => {
+                const resp = await fetch(
+                    `https://registry.npmjs.org/-/package/${pkgName}/dist-tags`
+                )
+                if (resp.status === 200) {
+                    return resp.json()
+                }
+
+                throw new Error('bad response from npm')
+            }
+        })
+        return generateBadge({ status: val.latest })
+        
     }
 
     return new Response('bad bad request')

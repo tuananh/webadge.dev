@@ -3,13 +3,22 @@ type = "webpack"
 webpack_config = "webpack.config.js"
 account_id = "e8ff9c2855e44e717fff487f7627b58f"
 workers_dev = true
+kv-namespaces = [ 
+    { binding = "badgeKV", id = "f30cab6849f94377817939fb4acbc559", preview_id = "f30cab6849f94377817939fb4acbc559"} 
+]
 
 [env.staging]
 name = "badge-staging"
 zone_id = "047c8ea67667f0773e8c6d162b2dd285"
 route = "badge-staging.tuananh.net/*"
+kv-namespaces = [ 
+    { binding = "badgeKV", id = "c5879b398e7e46888a48f7f7e836e868" } 
+]
 
 [env.production]
 name = "badge-production"
 zone_id = "047c8ea67667f0773e8c6d162b2dd285"
 route = "badge.tuananh.net/*"
+kv-namespaces = [ 
+    { binding = "badgeKV", id = "c17aac01aa874306be3474471bf84925" } 
+]

@@ -14,7 +14,8 @@
   "author": "Tuan Anh Tran <me@tuananh.org>",
   "license": "MIT",
   "dependencies": {
-    "badgen": "^3.2.1"
+    "badgen": "^3.2.1",
+    "ms": "^2.1.2"
   },
   "devDependencies": {
     "webpack": "^4.42.1",
