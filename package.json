@@ -15,6 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "badgen": "^3.2.1",
+    "byte-size": "^7.0.0",
     "ms": "^2.1.2"
   },
   "devDependencies": {
