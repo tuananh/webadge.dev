@@ -1,6 +1,6 @@
 import ms from "ms";
 
 export default {
-  defaultCacheDurationSecond: ms("1h") / 1000,
+  defaultCacheDurationSecond: ms("10m") / 1000,
   serveStaleData: true,
 };

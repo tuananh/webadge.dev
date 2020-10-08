@@ -1,5 +1,4 @@
 import { badgen } from "badgen";
-import ms from "ms";
 import config from "../config";
 
 const serveBadge = async (badgenOpts) => {
@@ -9,9 +8,7 @@ const serveBadge = async (badgenOpts) => {
     status: 200,
     headers: {
       "Content-Type": "image/svg+xml",
-      "Cache-Control": `max-age=${
-        ms(config.defaultCacheDurationSecond) / 1000
-      }`,
+      "Cache-Control": `max-age=${config.defaultCacheDurationSecond}`,
     },
   });
 };
