@@ -1,5 +1,5 @@
 module.exports = {
-    target: 'webworker',
-    entry: './dist/main.js',
-    mode: 'production',
-}
+  target: "webworker",
+  entry: "./index.js",
+  mode: "production",
+};

@@ -2,31 +2,30 @@ import config from "../config";
 import serveBadge from "../helpers/serve-badge";
 import cachedExecute from "../helpers/cached-execute";
 
-const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
+async function restGithub(path, preview = "hellcat") {
+  const headers = {
+    authorization: `token ${GITHUB_TOKEN}`,
+    accept: `application/vnd.github.${preview}-preview+json`,
+    "User-Agent": "Awesome-Octocat-App",
+  };
+  const resp = await fetch(config.githubApiUrl + path, { headers });
+  return resp.json();
+}
 
 async function queryGithub(query) {
   const headers = {
-    authorization: `token ${pickGithubToken()}`,
+    authorization: `token ${GITHUB_TOKEN}`,
     accept: "application/vnd.github.hawkgirl-preview+json",
     "User-Agent": "Awesome-Octocat-App",
     "Content-Type": "application/json",
   };
   const json = { query };
-  const resp = await fetch(config.ghGraphQLURL, {
+  const resp = await fetch(config.githubGraphqlUrl, {
     method: "POST",
     body: JSON.stringify(json),
     headers,
   });
   return resp.json();
-}
-
-function pickGithubToken() {
-  const githubTokens = config.ghTokens;
-  if (!githubTokens) {
-    throw new Error({ status: "token required" });
-  }
-  const tokens = githubTokens.split(",").map((segment) => segment.trim());
-  return rand(tokens);
 }
 
 async function queryRepoStats({ topic, owner, repo, restArgs = {} } = {}) {
@@ -106,6 +105,35 @@ async function queryRepoStats({ topic, owner, repo, restArgs = {} } = {}) {
   }
 }
 
+async function getLatestRelease({ owner, repo, channel }) {
+  const releases = await restGithub(`repos/${owner}/${repo}/releases`);
+
+  if (!releases || !releases.length) {
+    return {
+      subject: "release",
+      status: "none",
+      color: "yellow",
+    };
+  }
+
+  const [latest] = releases;
+  const stable = releases.find((release) => !release.prerelease);
+  switch (channel) {
+    case "stable":
+      return {
+        subject: "release",
+        status: stable ? stable.name || stable.tag_name : null,
+        color: "blue",
+      };
+    default:
+      return {
+        subject: "release",
+        status: latest.name || latest.tag_name,
+        color: latest.prerelease ? "orange" : "blue",
+      };
+  }
+}
+
 async function handleGitHub(request) {
   const { pathname } = new URL(request.url);
   const parts = pathname.split("/");
@@ -114,7 +142,6 @@ async function handleGitHub(request) {
   // TODO: validate pathname
   const owner = parts[3];
   const repo = parts[4];
-  console.log(topic, owner, repo);
   switch (topic) {
     case "releases":
     case "stars":
@@ -127,6 +154,9 @@ async function handleGitHub(request) {
             : String(info.stargazers.totalCount),
         color: "blue",
       });
+    case "release":
+      const opts = await getLatestRelease({ owner, repo, channel: "stable" });
+      return serveBadge(opts);
     default:
       return serveBadge({
         subject: topic,
