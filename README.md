@@ -14,7 +14,7 @@ The goal is
 
 ## Currently supported badges
 
-| Badge                      | Preview                                                                   | URL                                   |
+|                            | Preview                                                                   | URL                                   |
 | -------------------------- | ------------------------------------------------------------------------- | ------------------------------------- |
 | npm version                | ![](https://badge-staging.tuananh.net/npm/v/camaro)                       | `/npm/v/camaro`                       |
 | npm license                | ![](https://badge-staging.tuananh.net/npm/license/camaro)                 | `/npm/license/camaro`                 |
@@ -27,5 +27,6 @@ The goal is
 | bundlephobia minzip        | ![](https://badge-staging.tuananh.net/bundlephobia/minzip/camaro)         | `/bundlephobia/min/camaro`            |
 | bundlephobia tree-shaking  | ![](https://badge-staging.tuananh.net/bundlephobia/tree-shaking/camaro)   | `/bundlephobia/tree-shaking/camaro`   |
 | bundlephobia tree-shaking  | ![](https://badge-staging.tuananh.net/bundlephobia/tree-shaking/date-fns) | `/bundlephobia/tree-shaking/date-fns` |
-| GitHub releases            | ![](https://badge-staging.tuananh.net/github/releases/tuananh/camaro)     | `/github/releases/tuananh/camaro`     |
+| GitHub releases count      | ![](https://badge-staging.tuananh.net/github/releases/tuananh/camaro)     | `/github/releases/tuananh/camaro`     |
+| GitHub latest release      | ![](https://badge-staging.tuananh.net/github/release/tuananh/camaro)      | `/github/release/tuananh/camaro`      |
 | GitHub stars               | ![](https://badge-staging.tuananh.net/github/stars/tuananh/camaro)        | `/github/stars/tuananh/camaro`        |
