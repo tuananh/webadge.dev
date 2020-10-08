@@ -56,7 +56,11 @@ async function handlePackagephobia(request) {
           });
       }
     }
-    return serveBadge({ label: topic, status: json.dependencyCount });
+    return serveBadge({
+      subject: "bundlephobia",
+      status: "unknown",
+      color: "grey",
+    });
   }
 
   return serveBadge({
