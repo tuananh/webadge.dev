@@ -1,5 +1,8 @@
+import config from "../config";
 import serveBadge from "../helpers/serve-badge";
 import cachedExecute from "../helpers/cached-execute";
+
+const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
 export function queryGithub(query) {
   const headers = {
@@ -7,15 +10,13 @@ export function queryGithub(query) {
     accept: "application/vnd.github.hawkgirl-preview+json",
   };
   const json = { query };
-  const url = ghGraphQLURL;
-  return fetch(url, { method: "POST", json, headers }).json();
+  return fetch(ghGraphQLURL, { method: "POST", json, headers }).json();
 }
 
 function pickGithubToken() {
-  const { GH_TOKENS, GITHUB_TOKENS } = process.env;
-  const githubTokens = GITHUB_TOKENS || GH_TOKENS;
+  const githubTokens = config.ghTokens;
   if (!githubTokens) {
-    throw new BadgenError({ status: "token required" });
+    throw new Error({ status: "token required" });
   }
   const tokens = githubTokens.split(",").map((segment) => segment.trim());
   return rand(tokens);
@@ -101,25 +102,30 @@ async function queryRepoStats({ topic, owner, repo, restArgs = {} } = {}) {
 async function handleGitHub(request) {
   const { pathname } = new URL(request.url);
   const parts = pathname.split("/");
-  const topic = parts[1];
+  const topic = parts[2];
 
   // TODO: validate pathname
-  const owner = parts[2];
-  const repo = parts[3];
-
+  const owner = parts[3];
+  const repo = parts[4];
+  console.log(topic, owner, repo);
   switch (topic) {
-    case "release":
+    case "releases":
       const info = await queryRepoStats({ topic, owner, repo });
       return serveBadge({
         subject: "releases",
         status: info.releases.totalCount,
         color: "blue",
       });
-    case "tag":
-      break;
+    case "stars":
+      const info = await queryRepoStats({ topic, owner, repo });
+      return serveBadge({
+        subject: "stars",
+        status: info.stars.totalCount,
+        color: "blue",
+      });
     default:
       return serveBadge({
-        subject: "travis",
+        subject: topic,
         status: "unknown",
         color: "grey",
       });
