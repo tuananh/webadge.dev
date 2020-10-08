@@ -4,13 +4,20 @@ import cachedExecute from "../helpers/cached-execute";
 
 const rand = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-export function queryGithub(query) {
+async function queryGithub(query) {
   const headers = {
     authorization: `token ${pickGithubToken()}`,
     accept: "application/vnd.github.hawkgirl-preview+json",
+    "User-Agent": "Awesome-Octocat-App",
+    "Content-Type": "application/json",
   };
   const json = { query };
-  return fetch(ghGraphQLURL, { method: "POST", json, headers }).json();
+  const resp = await fetch(config.ghGraphQLURL, {
+    method: "POST",
+    body: JSON.stringify(json),
+    headers,
+  });
+  return resp.json();
 }
 
 function pickGithubToken() {
@@ -110,17 +117,14 @@ async function handleGitHub(request) {
   console.log(topic, owner, repo);
   switch (topic) {
     case "releases":
-      const info = await queryRepoStats({ topic, owner, repo });
-      return serveBadge({
-        subject: "releases",
-        status: info.releases.totalCount,
-        color: "blue",
-      });
     case "stars":
       const info = await queryRepoStats({ topic, owner, repo });
       return serveBadge({
-        subject: "stars",
-        status: info.stars.totalCount,
+        subject: topic,
+        status:
+          topic === "releases"
+            ? String(info.releases.totalCount)
+            : String(info.stargazers.totalCount),
         color: "blue",
       });
     default:
