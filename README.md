@@ -1,15 +1,16 @@
-# worker-badge
+🚥  worker-badge
+================
 
-Badges - built with Cloudflare Workers
+It's just badge - built with Cloudflare Workers
 
-A badget.net alternative. The reason I build this is badgen.net fails to load svg very often.
+I'm a huge fan of badgen.net. However, I find the images fail to load quite often.
 
-Most of the code is from [badgen repo](https://github.com/badgen/badgen.net). Credits to them for building a very nice service.
+Most of the code here is originally from [badgen repo](https://github.com/badgen/badgen.net). Credits to them for building a very nice service. 
 
-The goal is
+The goal of this project is
 
 - Eventually support all badges that supported by badgen.net
-- Extremely fast.
+- Extremely fast but not try to refresh data as quickly as possible.
 - Exclusively use Cloudflare tech stack only for learning purpose.
 
 ## Currently supported badges
