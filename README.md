@@ -3,7 +3,7 @@
 
 It's just badge - built with Cloudflare Workers
 
-I'm a huge fan of badgen.net. However, I find the images fail to load quite often.
+I'm a huge fan of badgen.net. However, I find the images fail to load quite often. I want to use Cloudflare Workers (+ KV and maybe Unique durable object where feasible) to rebuild it.
 
 Most of the code here is originally from [badgen repo](https://github.com/badgen/badgen.net). Credits to them for building a very nice service. 
 
