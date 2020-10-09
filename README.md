@@ -1,11 +1,10 @@
-🚥  worker-badge
-================
+# 🚥 worker-badge
 
 It's just badge - built with Cloudflare Workers
 
 I'm a huge fan of badgen.net. However, I find the images fail to load quite often. I want to use Cloudflare Workers (+ KV and maybe Unique durable object where feasible) to rebuild it.
 
-Most of the code here is originally from [badgen repo](https://github.com/badgen/badgen.net). Credits to them for building a very nice service. 
+Most of the code here is originally from [badgen repo](https://github.com/badgen/badgen.net). Credits to them for building a very nice service.
 
 The goal of this project is
 
@@ -26,6 +25,10 @@ The goal of this project is
 | npm version                | ![](https://badge-staging.tuananh.net/npm/v/camaro)                       | `/npm/v/camaro`                       |
 | npm license                | ![](https://badge-staging.tuananh.net/npm/license/camaro)                 | `/npm/license/camaro`                 |
 | npm types                  | ![](https://badge-staging.tuananh.net/npm/types/camaro)                   | `/npm/types/camaro`                   |
+| npm downloads per week     | ![](https://badge-staging.tuananh.net/npm/dw/lodash)                      | `/npm/dw/lodash`                      |
+| npm downloads per month    | ![](https://badge-staging.tuananh.net/npm/dm/lodash)                      | `/npm/dm/lodash`                      |
+| npm downloads per year     | ![](https://badge-staging.tuananh.net/npm/dy/lodash)                      | `/npm/dy/lodash`                      |
+| npm downloads total        | ![](https://badge-staging.tuananh.net/npm/dt/lodash)                      | `/npm/dt/lodash`                      |
 | Travis CI (build)          | ![](https://badge-staging.tuananh.net/travis/tuananh/camaro)              | `/travis/tuananh/camaro`              |
 | Travis CI (build - branch) | ![](https://badge-staging.tuananh.net/travis/tuananh/camaro/master)       | `/travis/tuananh/camaro`              |
 | Appveyor (build)           | ![](https://badge-staging.tuananh.net/appveyor/tuananh/camaro)            | `/appveyor/tuananh/camaro`            |
