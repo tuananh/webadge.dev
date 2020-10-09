@@ -9,7 +9,7 @@ Most of the code here is originally from [badgen repo](https://github.com/badgen
 The goal of this project is
 
 - Eventually support all badges that supported by badgen.net
-- Extremely fast but not try to refresh data as quickly as possible.
+- Extremely fast but try to refresh data as quickly as possible.
 - Exclusively use Cloudflare tech stack only for learning purpose.
 
 ## Contribute
