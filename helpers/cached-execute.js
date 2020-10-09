@@ -1,6 +1,16 @@
-import ms from "ms";
 import config from "../config";
 
+function parseJsonOrNot(value, jsonFlag) {
+  if (jsonFlag) {
+    if (typeof value === "object") {
+      return value;
+    } else {
+      return JSON.parse(value);
+    }
+  } else {
+    return value;
+  }
+}
 async function cachedExecute({ key, loadFn, json }) {
   const ttlKey = `ttl:${key}`;
   let [value, ttl] = await Promise.all([badgeKV.get(key), badgeKV.get(ttlKey)]);
@@ -10,10 +20,12 @@ async function cachedExecute({ key, loadFn, json }) {
     try {
       // serving the staled data if it's not yet removed from workers kv
       if (value) {
-        return json ? JSON.parse(value) : value;
+        console.log("value", value);
+        return parseJsonOrNot(value, json);
       } else {
         // reload
         value = await loadFn();
+        console.log("value", value);
         setTimeout(() => {
           if (value) {
             // we don't expire key here. Instead, we use another key for storing ttl.
@@ -30,14 +42,14 @@ async function cachedExecute({ key, loadFn, json }) {
             );
           }
         }, 0);
-        return json ? JSON.parse(value) : value;
+        return parseJsonOrNot(value, json);
       }
     } catch (err) {
       console.log("error in " + loadFn.name);
       throw err;
     }
   }
-  return json ? JSON.parse(value) : value;
+  return parseJsonOrNot(value, json);
 }
 
 export default cachedExecute;
