@@ -2,10 +2,10 @@ import config from "../config";
 
 function parseJsonOrNot(value, jsonFlag) {
   if (jsonFlag) {
-    if (typeof value === "object") {
-      return value;
-    } else {
+    if (typeof value === "string") {
       return JSON.parse(value);
+    } else {
+      return value;
     }
   } else {
     return value;
