@@ -99,9 +99,9 @@ async function handleNpm(request) {
   const { pathname } = new URL(request.url);
   const parts = pathname.split("/");
   if (parts.length > 3) {
-    const topic = parts[2];
+    const subtopic = parts[2];
     const pkgName = parts[3];
-    switch (topic) {
+    switch (subtopic) {
       case "v":
         try {
           const val = await cachedExecute({
@@ -138,15 +138,23 @@ async function handleNpm(request) {
         });
         return serveBadge({ label: "license", status: info.license });
       case "dt":
-        return serveBadge(await download("total", pkgName));
       case "dd":
-        return serveBadge(await download("last-day", pkgName)); // might deprecate this
       case "dw":
-        return serveBadge(await download("last-week", pkgName));
       case "dm":
-        return serveBadge(await download("last-month", pkgName));
       case "dy":
-        return serveBadge(await download("last-year", pkgName));
+        const map = {
+          dt: "total",
+          dd: "last-day",
+          dw: "last-week",
+          dm: "last-month",
+          dy: "last-year",
+        };
+        const opts = await cachedExecute({
+          key: pathname,
+          json: true,
+          loadFn: async () => download(map[subtopic], pkgName),
+        });
+        return serveBadge(opts);
       case "types":
         const def = await cachedExecute({
           key: pathname,
