@@ -13,6 +13,12 @@ The goal of this project is
 - Extremely fast but not try to refresh data as quickly as possible.
 - Exclusively use Cloudflare tech stack only for learning purpose.
 
+## Contribute
+
+- Install `@cloudflare/wrangler`.
+- Make the changes.
+- Test with `wrangler dev` or `wrangler preview`.
+
 ## Currently supported badges
 
 |                            | Preview                                                                   | URL                                   |
