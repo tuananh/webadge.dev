@@ -1,3 +1,4 @@
+import ms from "ms";
 import config from "../config";
 
 async function cachedExecute({ key, loadFn, json }) {
@@ -7,25 +8,36 @@ async function cachedExecute({ key, loadFn, json }) {
   const shouldReload = value === null || ttl === null || ttl < currentTimestamp;
   if (shouldReload) {
     try {
-      value = await loadFn();
+      // serving the staled data if it's not yet removed from workers kv
       if (value) {
-        // we don't expire key here. Instead, we use another key for storing ttl.
-        // when the data is expired, we will serve the staled data and refresh in the background
-        badgeKV.put(key, JSON.stringify(value));
-        badgeKV.put(
-          ttlKey,
-          currentTimestamp + config.defaultCacheDurationSecond * 1000
-        );
+        return json ? JSON.parse(value) : value;
+      } else {
+        // reload
+        value = await loadFn();
+        setTimeout(() => {
+          if (value) {
+            // we don't expire key here. Instead, we use another key for storing ttl.
+            // when the data is expired, we will serve the staled data and refresh in the background
+            badgeKV.put(key, JSON.stringify(value), {
+              expirationTtl: config.staledDataTtl,
+            });
+            badgeKV.put(
+              ttlKey,
+              currentTimestamp + config.defaultCacheDurationSecond * 1000,
+              {
+                expirationTtl: config.staledDataTtl,
+              }
+            );
+          }
+        }, 0);
+        return json ? JSON.parse(value) : value;
       }
-      return value;
     } catch (err) {
       console.log("error in " + loadFn.name);
       throw err;
     }
   }
-  if (json === true) {
-    return JSON.parse(value);
-  } else return value;
+  return json ? JSON.parse(value) : value;
 }
 
 export default cachedExecute;

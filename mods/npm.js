@@ -122,6 +122,7 @@ async function handleNpm(request) {
               throw new Error("bad response from npm");
             },
           });
+          console.log(val);
           return serveBadge({ label: "npm", status: val.latest });
         } catch (err) {
           if (err.message === "pkg not found") {
