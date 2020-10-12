@@ -96,6 +96,7 @@ async function typesDefinition(pkgName, tag = "latest") {
 }
 
 async function handleNpm(request) {
+  const unknownErr = { label: "npm", status: "unknown", color: "grey" };
   const { pathname } = new URL(request.url);
   const parts = pathname.split("/");
   if (parts.length > 3) {
@@ -128,7 +129,7 @@ async function handleNpm(request) {
           if (err.message === "pkg not found") {
             return serveBadge({ label: "npm", status: "pkg not found" });
           } else {
-            return serveBadge({ label: "npm", status: "unknown" });
+            return serveBadge(unknownErr);
           }
         }
       case "license":
@@ -164,11 +165,7 @@ async function handleNpm(request) {
         });
         return serveBadge({ ...def, label: "types" });
       default:
-        return serveBadge({
-          label: "npm",
-          status: "unknown topic",
-          color: "grey",
-        });
+        return serveBadge(unknownErr);
     }
   }
 

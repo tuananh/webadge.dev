@@ -4,12 +4,9 @@ function parseJsonOrNot(value, jsonFlag) {
   if (jsonFlag) {
     if (typeof value === "string") {
       return JSON.parse(value);
-    } else {
-      return value;
     }
-  } else {
-    return value;
   }
+  return value;
 }
 async function cachedExecute({ key, loadFn, json }) {
   const ttlKey = `ttl:${key}`;
