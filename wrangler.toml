@@ -6,6 +6,7 @@ workers_dev = true
 kv-namespaces = [ 
     { binding = "badgeKV", id = "f30cab6849f94377817939fb4acbc559", preview_id = "62c36c2bf8bc4ef78ea69fe2e83a10f4"} 
 ]
+vars = { GITHUB_TOKEN = "update this value" }
 
 [env.staging]
 name = "badge-staging"
