@@ -1,7 +1,8 @@
 import Router from "./router";
 import handleStaticBadge from "./mods/static";
 import handleNpm from "./mods/npm";
-import handlePackagephobia from "./mods/bundlephobia";
+import handleBundlephobia from "./mods/bundlephobia";
+import handlePackagephobia from "./mods/packagephobia";
 import handleTravisCI from "./mods/travis";
 import handleAppveyor from "./mods/appveyor";
 import handleGitHub from "./mods/github";
@@ -14,7 +15,8 @@ async function handleRequest(request) {
   const r = new Router();
   r.get(".*/badge/.*", () => handleStaticBadge(request));
   r.get(".*/npm/.*", () => handleNpm(request));
-  r.get(".*/bundlephobia/.*", () => handlePackagephobia(request));
+  r.get(".*/bundlephobia/.*", () => handleBundlephobia(request));
+  r.get(".*/packagephobia/.*", () => handlePackagephobia(request));
   r.get(".*/travis/.*", () => handleTravisCI(request));
   r.get(".*/appveyor/.*", () => handleAppveyor(request));
   r.get(".*/github/.*", () => handleGitHub(request));

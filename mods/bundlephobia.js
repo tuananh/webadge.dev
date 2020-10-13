@@ -1,7 +1,7 @@
 import byteSize from "byte-size";
 import serveBadge from "../helpers/serve-badge";
 
-async function handlePackagephobia(request) {
+async function handleBundlephobia(request) {
   const { pathname } = new URL(request.url);
   const parts = pathname.split("/");
   if (parts.length > 3) {
@@ -69,4 +69,4 @@ async function handlePackagephobia(request) {
   });
 }
 
-export default handlePackagephobia;
+export default handleBundlephobia;
