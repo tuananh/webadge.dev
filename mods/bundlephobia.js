@@ -4,7 +4,6 @@ import serveBadge from "../helpers/serve-badge";
 async function handlePackagephobia(request) {
   const { pathname } = new URL(request.url);
   const parts = pathname.split("/");
-  console.log(parts);
   if (parts.length > 3) {
     const topic = parts[2];
     const pkgName = parts[3];

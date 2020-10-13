@@ -1,4 +1,5 @@
 import Router from "./router";
+import handleStaticBadge from "./mods/static";
 import handleNpm from "./mods/npm";
 import handlePackagephobia from "./mods/bundlephobia";
 import handleTravisCI from "./mods/travis";
@@ -11,6 +12,7 @@ addEventListener("fetch", (event) => {
 
 async function handleRequest(request) {
   const r = new Router();
+  r.get(".*/badge/.*", () => handleStaticBadge(request));
   r.get(".*/npm/.*", () => handleNpm(request));
   r.get(".*/bundlephobia/.*", () => handlePackagephobia(request));
   r.get(".*/travis/.*", () => handleTravisCI(request));

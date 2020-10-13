@@ -20,6 +20,8 @@ The goal of this project is
 
 ## Currently supported badges
 
+### Live badges
+
 |                            | Preview                                                                   | URL                                   |
 | -------------------------- | ------------------------------------------------------------------------- | ------------------------------------- |
 | npm version                | ![](https://badge-staging.tuananh.net/npm/v/camaro)                       | `/npm/v/camaro`                       |
@@ -40,3 +42,14 @@ The goal of this project is
 | GitHub releases count      | ![](https://badge-staging.tuananh.net/github/releases/tuananh/camaro)     | `/github/releases/tuananh/camaro`     |
 | GitHub latest release      | ![](https://badge-staging.tuananh.net/github/release/tuananh/camaro)      | `/github/release/tuananh/camaro`      |
 | GitHub stars               | ![](https://badge-staging.tuananh.net/github/stars/tuananh/camaro)        | `/github/stars/tuananh/camaro`        |
+
+### Static badges
+
+|                      | Preview                                                                | URL                                |
+| -------------------- | ---------------------------------------------------------------------- | ---------------------------------- |
+| Swift version        | ![](https://badge-staging.tuananh.net/badge/Swift/4.2/orange)          | `/badge/Swift/4.2/orange`          |
+| License MIT          | ![](https://badge-staging.tuananh.net/badge/license/MIT/blue)          | `/badge/license/MIT/blue`          |
+| Chat on Gitter       | ![](https://badge-staging.tuananh.net/badge/chat/on%20gitter/cyan)     | `/badge/chat/on%20gitter/cyan`     |
+| star rating          | ![](https://badge-staging.tuananh.net/badge/stars/★★★★☆)               | `/badge/stars/★★★★☆`               |
+| patron               | ![](https://badge-staging.tuananh.net/badge/become/a%20patron/F96854)  | `/badge/become/a%20patron/F96854`  |
+| code style: standard | ![](https://badge-staging.tuananh.net/badge/code%20style/standard/f2a) | `/badge/code%20style/standard/f2a` |

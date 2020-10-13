@@ -21,13 +21,13 @@ async function cachedExecute({ key, loadFn, json }) {
         // we don't expire key here. Instead, we use another key for storing ttl.
         // when the data is expired, we will serve the staled data and refresh in the background
         badgeKV.put(key, JSON.stringify(newVal), {
-          expirationTtl: config.staledDataTtl,
+          expirationTtl: config.maxCacheAgeSecond,
         });
         badgeKV.put(
           ttlKey,
           currentTimestamp + config.defaultCacheDurationSecond * 1000,
           {
-            expirationTtl: config.staledDataTtl,
+            expirationTtl: config.maxCacheAgeSecond,
           }
         );
       }
