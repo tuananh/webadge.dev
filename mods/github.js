@@ -2,6 +2,21 @@ import config from "../config";
 import serveBadge from "../helpers/serve-badge";
 import cachedExecute from "../helpers/cached-execute";
 
+const topicMap = {
+  releases: "releases",
+  tags: "refs",
+  watchers: "watchers",
+  stars: "stargazers",
+  forks: "forks",
+  issues: "issues",
+  "open-issues": "issues",
+  "closed-issues": "issues",
+  prs: "pullRequests",
+  "open-prs": "pullRequests",
+  "closed-prs": "pullRequests",
+  "merged-prs": "pullRequests",
+};
+
 async function restGithub(path, preview = "hellcat") {
   const headers = {
     authorization: `token ${GITHUB_TOKEN}`,
@@ -144,14 +159,21 @@ async function handleGitHub(request) {
   const repo = parts[4];
   switch (topic) {
     case "releases":
+    case "tags":
     case "stars":
+    case "prs":
+    case "open-prs":
+    case "closed-prs":
+    case "merged-prs":
+    case "issues":
+    case "open-issues":
+    case "closed-issues":
+    case "forks":
+    case "watchers":
       const info = await queryRepoStats({ topic, owner, repo });
       return serveBadge({
         subject: topic,
-        status:
-          topic === "releases"
-            ? String(info.releases.totalCount)
-            : String(info.stargazers.totalCount),
+        status: String(info[topicMap[topic]].totalCount),
         color: "blue",
       });
     case "release":

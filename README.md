@@ -38,13 +38,23 @@ The goal of this project is
 | bundlephobia min           | ![](https://badge-staging.tuananh.net/bundlephobia/min/camaro)                     | `/bundlephobia/min/camaro`                     |
 | bundlephobia minzip        | ![](https://badge-staging.tuananh.net/bundlephobia/minzip/camaro)                  | `/bundlephobia/minzip/camaro`                  |
 | bundlephobia tree-shaking  | ![](https://badge-staging.tuananh.net/bundlephobia/tree-shaking/camaro)            | `/bundlephobia/tree-shaking/camaro`            |
+| bundlephobia tree-shaking  | ![](https://badge-staging.tuananh.net/bundlephobia/tree-shaking/date-fns)          | `/bundlephobia/tree-shaking/date-fns`          |
 | packagephobia publish size | ![](https://badge-staging.tuananh.net/packagephobia/publish/camaro)                | `/packagephobia/publish/camaro`                |
 | packagephobia install size | ![](https://badge-staging.tuananh.net/packagephobia/install/camaro)                | `/packagephobia/install/camaro`                |
 | packagephobia scoped pkg   | ![](https://badge-staging.tuananh.net/packagephobia/publish/@tusbar/cache-control) | `/packagephobia/publish/@tusbar/cache-control` |
-| bundlephobia tree-shaking  | ![](https://badge-staging.tuananh.net/bundlephobia/tree-shaking/date-fns)          | `/bundlephobia/tree-shaking/date-fns`          |
 | GitHub releases count      | ![](https://badge-staging.tuananh.net/github/releases/tuananh/camaro)              | `/github/releases/tuananh/camaro`              |
+| GitHub tags count          | ![](https://badge-staging.tuananh.net/github/tags/tuananh/camaro)                  | `/github/tags/tuananh/camaro`                  |
 | GitHub latest release      | ![](https://badge-staging.tuananh.net/github/release/tuananh/camaro)               | `/github/release/tuananh/camaro`               |
 | GitHub stars               | ![](https://badge-staging.tuananh.net/github/stars/tuananh/camaro)                 | `/github/stars/tuananh/camaro`                 |
+| GitHub watchers            | ![](https://badge-staging.tuananh.net/github/watchers/tuananh/camaro)              | `/github/watchers/tuananh/camaro`              |
+| GitHub forks               | ![](https://badge-staging.tuananh.net/github/forks/tuananh/camaro)                 | `/github/forks/tuananh/camaro`                 |
+| GitHub issues              | ![](https://badge-staging.tuananh.net/github/issues/tuananh/camaro)                | `/github/issues/tuananh/camaro`                |
+| GitHub open-issues         | ![](https://badge-staging.tuananh.net/github/open-issues/tuananh/camaro)           | `/github/open-issues/tuananh/camaro`           |
+| GitHub closed-issues       | ![](https://badge-staging.tuananh.net/github/closed-issues/tuananh/camaro)         | `/github/closed-issues/tuananh/camaro`         |
+| GitHub prs                 | ![](https://badge-staging.tuananh.net/github/prs/tuananh/camaro)                   | `/github/prs/tuananh/camaro`                   |
+| GitHub open-prs            | ![](https://badge-staging.tuananh.net/github/open-prs/tuananh/camaro)              | `/github/open-prs/tuananh/camaro`              |
+| GitHub closed-prs          | ![](https://badge-staging.tuananh.net/github/closed-prs/tuananh/camaro)            | `/github/closed-prs/tuananh/camaro`            |
+| GitHub merged-prs          | ![](https://badge-staging.tuananh.net/github/merged-prs/tuananh/camaro)            | `/github/merged-prs/tuananh/camaro`            |
 
 ### Static badges
 
