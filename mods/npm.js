@@ -95,81 +95,75 @@ async function typesDefinition(pkgName, tag = "latest") {
   };
 }
 
-async function handleNpm(request) {
+async function handleNpm({ topic, pkgName }) {
+  const pathname = ["npm", topic, pkgName].join("/");
   const unknownErr = { label: "npm", status: "unknown", color: "grey" };
-  const { pathname } = new URL(request.url);
-  const parts = pathname.split("/");
-  if (parts.length > 3) {
-    const subtopic = parts[2];
-    const pkgName = parts[3];
-    switch (subtopic) {
-      case "v":
-        try {
-          const val = await cachedExecute({
-            key: pathname,
-            json: true,
-            loadFn: async () => {
-              const resp = await fetch(
-                `https://registry.npmjs.org/-/package/${pkgName}/dist-tags`
-              );
-              if (resp.status === 200) {
-                return resp.json();
-              }
 
-              if (resp.status === 404) {
-                throw new Error("pkg not found");
-              }
+  switch (topic) {
+    case "v":
+      try {
+        const val = await cachedExecute({
+          key: pathname,
+          json: true,
+          loadFn: async () => {
+            const resp = await fetch(
+              `https://registry.npmjs.org/-/package/${pkgName}/dist-tags`
+            );
+            if (resp.status === 200) {
+              return resp.json();
+            }
 
-              throw new Error("bad response from npm");
-            },
-          });
-          console.log(val);
-          return badgen({ label: "npm", status: val.latest });
-        } catch (err) {
-          if (err.message === "pkg not found") {
-            return badgen({ label: "npm", status: "pkg not found" });
-          } else {
-            return badgen(unknownErr);
-          }
+            if (resp.status === 404) {
+              throw new Error("pkg not found");
+            }
+
+            throw new Error("bad response from npm");
+          },
+        });
+
+        return badgen({ label: "npm", status: val.latest });
+      } catch (err) {
+        if (err.message === "pkg not found") {
+          return badgen({ label: "npm", status: "pkg not found" });
+        } else {
+          return badgen(unknownErr);
         }
-      case "license":
-        const info = await cachedExecute({
-          key: pathname,
-          json: true,
-          loadFn: async () => pkgJson(pkgName, "latest"),
-        });
-        return badgen({ label: "license", status: info.license });
-      case "dt":
-      case "dd":
-      case "dw":
-      case "dm":
-      case "dy":
-        const map = {
-          dt: "total",
-          dd: "last-day",
-          dw: "last-week",
-          dm: "last-month",
-          dy: "last-year",
-        };
-        const opts = await cachedExecute({
-          key: pathname,
-          json: true,
-          loadFn: async () => download(map[subtopic], pkgName),
-        });
-        return badgen(opts);
-      case "types":
-        const def = await cachedExecute({
-          key: pathname,
-          json: true,
-          loadFn: async () => typesDefinition(pkgName, "latest"),
-        });
-        return badgen({ ...def, label: "types" });
-      default:
-        return badgen(unknownErr);
-    }
+      }
+    case "license":
+      const info = await cachedExecute({
+        key: pathname,
+        json: true,
+        loadFn: async () => pkgJson(pkgName, "latest"),
+      });
+      return badgen({ label: "license", status: info.license });
+    case "dt":
+    case "dd":
+    case "dw":
+    case "dm":
+    case "dy":
+      const map = {
+        dt: "total",
+        dd: "last-day",
+        dw: "last-week",
+        dm: "last-month",
+        dy: "last-year",
+      };
+      const opts = await cachedExecute({
+        key: pathname,
+        json: true,
+        loadFn: async () => download(map[topic], pkgName),
+      });
+      return badgen(opts);
+    case "types":
+      const def = await cachedExecute({
+        key: pathname,
+        json: true,
+        loadFn: async () => typesDefinition(pkgName, "latest"),
+      });
+      return badgen({ ...def, label: "types" });
+    default:
+      return badgen(unknownErr);
   }
-
-  return badgen({ label: "npm", status: "unknown topic", color: "grey" });
 }
 
 export default handleNpm;

@@ -14,15 +14,8 @@ const statuses = [
   ["canceled", "grey"],
 ];
 
-async function handleTravisCI(request) {
-  const { pathname } = new URL(request.url);
-  const parts = pathname.split("/");
-  if (!(parts.length === 4 || parts.length == 5)) {
-    throw new Error("bad request");
-  }
-  const user = parts[2];
-  const repo = parts[3];
-  const branch = parts.length === 5 ? parts[4] : "master";
+async function handleTravisCI({ user, repo, branch = "master" }) {
+  const pathname = ["travis", user, repo, branch].join("/");
 
   const com = `https://api.travis-ci.com/${user}/${repo}.svg?branch=${branch}`;
   const org = `https://api.travis-ci.org/${user}/${repo}.svg?branch=${branch}`;

@@ -10,7 +10,7 @@ import handleGitHub from "./mods/github";
 
 const router = new Router();
 
-async function responseHandler(ctx, handler) {
+async function routeHandler(ctx, handler) {
   const badge = await handler(ctx.params);
 
   ctx.body = badge;
@@ -22,28 +22,27 @@ async function responseHandler(ctx, handler) {
 }
 
 router.get("/badge/:label/:status/:color", (ctx) =>
-  responseHandler(ctx, handleStaticBadge)
+  routeHandler(ctx, handleStaticBadge)
 );
-// router.get("/npm/:topic/:pkgName", (ctx) =>
-//   responseHandler(ctx, handleNpm)
-// );
+router.get("/npm/:topic/:pkgName", (ctx) => routeHandler(ctx, handleNpm));
 router.get("/github/:topic/:owner/:repo", (ctx) =>
-  responseHandler(ctx, handleGitHub)
+  routeHandler(ctx, handleGitHub)
 );
 router.get("/bundlephobia/:topic/:pkgName", (ctx) =>
-  responseHandler(ctx, handleBundlephobia)
+  routeHandler(ctx, handleBundlephobia)
 );
-// router.get("/packagephobia/:topic/:pkgName", (ctx) =>
-//   responseHandler(ctx, handlePackagephobia)
-// );
-// router.get("/travis/:user/:repo/:branch", (ctx) =>
-//   responseHandler(ctx, handleTravisCI)
-// );
+router.get("/packagephobia/:topic/:pkgName", (ctx) =>
+  routeHandler(ctx, handlePackagephobia)
+);
+router.get("/travis/:user/:repo/:branch", (ctx) =>
+  routeHandler(ctx, handleTravisCI)
+);
+router.get("/travis/:user/:repo", (ctx) => routeHandler(ctx, handleTravisCI));
 router.get("/appveyor/:account/:project/:branch", (ctx) =>
-  responseHandler(ctx, handleAppveyor)
+  routeHandler(ctx, handleAppveyor)
 );
 router.get("/appveyor/:account/:project", (ctx) =>
-  responseHandler(ctx, handleAppveyor)
+  routeHandler(ctx, handleAppveyor)
 );
 
 addEventListener("fetch", (event) => {
