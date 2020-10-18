@@ -1,15 +1,10 @@
 import { badgen } from "badgen";
 
-async function handleAppveyor(request) {
-  const { pathname } = new URL(request.url);
-  const parts = pathname.split("/");
-  if (!(parts.length === 4 || parts.length == 5)) {
-    throw new Error("bad request");
-  }
-  const account = parts[2];
-  const project = parts[3];
-  const branch = parts.length === 5 ? `/branch/` + parts[4] : "";
-  const url = `https://ci.appveyor.com/api/projects/${account}/${project}${branch}`;
+async function handleAppveyor({ account, project, branch = "" }) {
+  const url = branch
+    ? `https://ci.appveyor.com/api/projects/${account}/${project}/branch/${branch}`
+    : `https://ci.appveyor.com/api/projects/${account}/${project}${branch}`;
+
   const resp = await fetch(url);
   if (resp.status === 200) {
     const { build } = await resp.json();

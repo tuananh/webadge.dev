@@ -148,14 +148,7 @@ async function getLatestRelease({ owner, repo, channel }) {
   }
 }
 
-async function handleGitHub(request) {
-  const { pathname } = new URL(request.url);
-  const parts = pathname.split("/");
-  const topic = parts[2];
-
-  // TODO: validate pathname
-  const owner = parts[3];
-  const repo = parts[4];
+async function handleGitHub({ topic, owner, repo }) {
   switch (topic) {
     case "releases":
     case "tags":

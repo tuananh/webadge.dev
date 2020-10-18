@@ -24,23 +24,28 @@ async function responseHandler(ctx, handler) {
 router.get("/badge/:label/:status/:color", (ctx) =>
   responseHandler(ctx, handleStaticBadge)
 );
+// router.get("/npm/:topic/:pkgName", (ctx) =>
+//   responseHandler(ctx, handleNpm)
+// );
+router.get("/github/:topic/:owner/:repo", (ctx) =>
+  responseHandler(ctx, handleGitHub)
+);
+router.get("/bundlephobia/:topic/:pkgName", (ctx) =>
+  responseHandler(ctx, handleBundlephobia)
+);
+// router.get("/packagephobia/:topic/:pkgName", (ctx) =>
+//   responseHandler(ctx, handlePackagephobia)
+// );
+// router.get("/travis/:user/:repo/:branch", (ctx) =>
+//   responseHandler(ctx, handleTravisCI)
+// );
+router.get("/appveyor/:account/:project/:branch", (ctx) =>
+  responseHandler(ctx, handleAppveyor)
+);
+router.get("/appveyor/:account/:project", (ctx) =>
+  responseHandler(ctx, handleAppveyor)
+);
 
 addEventListener("fetch", (event) => {
   event.respondWith(router.resolve(event));
 });
-
-// async function handleRequest(request) {
-//   const r = new Router();
-//   r.get(".*/badge/.*", () => handleStaticBadge(request));
-//   r.get(".*/npm/.*", () => handleNpm(request));
-//   r.get(".*/bundlephobia/.*", () => handleBundlephobia(request));
-//   r.get(".*/packagephobia/.*", () => handlePackagephobia(request));
-//   r.get(".*/travis/.*", () => handleTravisCI(request));
-//   r.get(".*/appveyor/.*", () => handleAppveyor(request));
-//   r.get(".*/github/.*", () => handleGitHub(request));
-
-//   r.get("/", () => new Response("default backend - 404"));
-
-//   const resp = await r.route(request);
-//   return resp;
-// }
