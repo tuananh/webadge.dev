@@ -16,6 +16,7 @@
   "dependencies": {
     "badgen": "^3.2.1",
     "byte-size": "^7.0.0",
+    "cloudworker-router": "^1.11.1",
     "millify": "^3.3.0",
     "ms": "^2.1.2"
   },
