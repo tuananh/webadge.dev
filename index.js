@@ -21,9 +21,14 @@ async function routeHandler(ctx, handler) {
   ctx.status = 200;
 }
 
+// TODO(anh): optional param is not supported yet hence we have to duplicate route
+router.get("/badge/:label/:status", (ctx) =>
+  routeHandler(ctx, handleStaticBadge)
+);
 router.get("/badge/:label/:status/:color", (ctx) =>
   routeHandler(ctx, handleStaticBadge)
 );
+
 router.get("/npm/:topic/:pkgName", (ctx) => routeHandler(ctx, handleNpm));
 router.get("/github/:topic/:owner/:repo", (ctx) =>
   routeHandler(ctx, handleGitHub)
@@ -32,6 +37,9 @@ router.get("/bundlephobia/:topic/:pkgName", (ctx) =>
   routeHandler(ctx, handleBundlephobia)
 );
 router.get("/packagephobia/:topic/:pkgName", (ctx) =>
+  routeHandler(ctx, handlePackagephobia)
+);
+router.get("/packagephobia/:topic/:scope/:pkgName", (ctx) =>
   routeHandler(ctx, handlePackagephobia)
 );
 router.get("/travis/:user/:repo/:branch", (ctx) =>
