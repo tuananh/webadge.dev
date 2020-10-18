@@ -1,5 +1,5 @@
 import millify from "millify";
-import serveBadge from "../helpers/serve-badge";
+import { badgen } from "badgen";
 import cachedExecute from "../helpers/cached-execute";
 
 async function download(period, pkgName, tag = "latest") {
@@ -124,12 +124,12 @@ async function handleNpm(request) {
             },
           });
           console.log(val);
-          return serveBadge({ label: "npm", status: val.latest });
+          return badgen({ label: "npm", status: val.latest });
         } catch (err) {
           if (err.message === "pkg not found") {
-            return serveBadge({ label: "npm", status: "pkg not found" });
+            return badgen({ label: "npm", status: "pkg not found" });
           } else {
-            return serveBadge(unknownErr);
+            return badgen(unknownErr);
           }
         }
       case "license":
@@ -138,7 +138,7 @@ async function handleNpm(request) {
           json: true,
           loadFn: async () => pkgJson(pkgName, "latest"),
         });
-        return serveBadge({ label: "license", status: info.license });
+        return badgen({ label: "license", status: info.license });
       case "dt":
       case "dd":
       case "dw":
@@ -156,20 +156,20 @@ async function handleNpm(request) {
           json: true,
           loadFn: async () => download(map[subtopic], pkgName),
         });
-        return serveBadge(opts);
+        return badgen(opts);
       case "types":
         const def = await cachedExecute({
           key: pathname,
           json: true,
           loadFn: async () => typesDefinition(pkgName, "latest"),
         });
-        return serveBadge({ ...def, label: "types" });
+        return badgen({ ...def, label: "types" });
       default:
-        return serveBadge(unknownErr);
+        return badgen(unknownErr);
     }
   }
 
-  return serveBadge({ label: "npm", status: "unknown topic", color: "grey" });
+  return badgen({ label: "npm", status: "unknown topic", color: "grey" });
 }
 
 export default handleNpm;

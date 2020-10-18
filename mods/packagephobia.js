@@ -1,4 +1,4 @@
-import serveBadge from "../helpers/serve-badge";
+import { badgen } from "badgen";
 
 const errBadge = { subject: "packagephobia", status: "unknown", color: "grey" };
 async function handlePackagephobia(request) {
@@ -11,7 +11,7 @@ async function handlePackagephobia(request) {
     if (parts.length === 5) {
       const scope = parts[3];
       if (!scope.startsWith("@")) {
-        return serveBadge(errBadge);
+        return badgen(errBadge);
       }
       const name = parts[4];
       pkgName = scope + "/" + name;
@@ -23,25 +23,25 @@ async function handlePackagephobia(request) {
       const { install, publish } = await resp.json();
       switch (topic) {
         case "publish":
-          return serveBadge({
+          return badgen({
             subject: "publish size",
             status: publish.pretty,
             color: publish.color.replace("#", ""),
           });
         case "install":
-          return serveBadge({
+          return badgen({
             subject: "install size",
             status: install.pretty,
             color: install.color.replace("#", ""),
           });
         default:
-          return serveBadge(errBadge);
+          return badgen(errBadge);
       }
     }
-    return serveBadge(errBadge);
+    return badgen(errBadge);
   }
 
-  return serveBadge(errBadge);
+  return badgen(errBadge);
 }
 
 export default handlePackagephobia;

@@ -1,6 +1,5 @@
 import config from "../config";
-import serveBadge from "../helpers/serve-badge";
-import cachedExecute from "../helpers/cached-execute";
+import { badgen } from "badgen";
 
 const topicMap = {
   releases: "releases",
@@ -171,16 +170,16 @@ async function handleGitHub(request) {
     case "forks":
     case "watchers":
       const info = await queryRepoStats({ topic, owner, repo });
-      return serveBadge({
+      return badgen({
         subject: topic,
         status: String(info[topicMap[topic]].totalCount),
         color: "blue",
       });
     case "release":
       const opts = await getLatestRelease({ owner, repo, channel: "stable" });
-      return serveBadge(opts);
+      return badgen(opts);
     default:
-      return serveBadge({
+      return badgen({
         subject: topic,
         status: "unknown",
         color: "grey",

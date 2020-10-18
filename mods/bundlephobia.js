@@ -1,5 +1,5 @@
 import byteSize from "byte-size";
-import serveBadge from "../helpers/serve-badge";
+import { badgen } from "badgen";
 
 async function handleBundlephobia(request) {
   const { pathname } = new URL(request.url);
@@ -20,14 +20,14 @@ async function handleBundlephobia(request) {
       } = await resp.json();
       switch (topic) {
         case "min":
-          return serveBadge({
+          return badgen({
             label: topic,
             status: byteSize(size, { units: "iec" })
               .toString()
               .replace(/iB\b/, "B"),
           });
         case "minzip":
-          return serveBadge({
+          return badgen({
             label: topic,
             status: byteSize(gzip, { units: "iec" })
               .toString()
@@ -35,34 +35,34 @@ async function handleBundlephobia(request) {
             color: "blue",
           });
         case "dependency-count":
-          return serveBadge({
+          return badgen({
             label: topic,
             status: dependencyCount,
             color: "blue",
           });
         case "tree-shaking":
           const isTreeShakeable = hasJSModule || hasJSNext;
-          return serveBadge({
+          return badgen({
             label: topic,
             status: isTreeShakeable ? "supported" : "not supported",
             color: isTreeShakeable ? "green" : "red",
           });
         default:
-          return serveBadge({
+          return badgen({
             subject: "bundlephobia",
             status: "unknown",
             color: "grey",
           });
       }
     }
-    return serveBadge({
+    return badgen({
       subject: "bundlephobia",
       status: "unknown",
       color: "grey",
     });
   }
 
-  return serveBadge({
+  return badgen({
     subject: "bundlephobia",
     status: "unknown",
     color: "grey",
