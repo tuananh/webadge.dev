@@ -66,3 +66,10 @@ The goal of this project is
 | star rating          | ![](https://badge-staging.tuananh.net/badge/stars/★★★★☆)               | `/badge/stars/★★★★☆`               |
 | patron               | ![](https://badge-staging.tuananh.net/badge/become/a%20patron/F96854)  | `/badge/become/a%20patron/F96854`  |
 | code style: standard | ![](https://badge-staging.tuananh.net/badge/code%20style/standard/f2a) | `/badge/code%20style/standard/f2a` |
+
+## Other styling options
+
+|            | Preview                                                                  | URL                                  |
+| ---------- | ------------------------------------------------------------------------ | ------------------------------------ |
+| flat style | ![](https://badge-staging.tuananh.net/badge/Swift/4.2/orange?style=flat) | `/badge/Swift/4.2/orange?style=flat` |
+| scale      | ![](https://badge-staging.tuananh.net/badge/Swift/4.2/orange?scale=2)    | `/badge/Swift/4.2/orange?scale=2`    |
