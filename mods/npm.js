@@ -1,5 +1,5 @@
 import millify from "millify";
-import { badgen } from "badgen";
+import badgen from "../helpers/badge";
 import cachedExecute from "../helpers/cached-execute";
 
 async function download(period, pkgName, tag = "latest") {
@@ -95,7 +95,7 @@ async function typesDefinition(pkgName, tag = "latest") {
   };
 }
 
-async function handleNpm({ topic, pkgName }) {
+async function handleNpm({ topic, pkgName }, options) {
   const pathname = ["npm", topic, pkgName].join("/");
   const unknownErr = { label: "npm", status: "unknown", color: "grey" };
 
@@ -121,12 +121,12 @@ async function handleNpm({ topic, pkgName }) {
           },
         });
 
-        return badgen({ label: "npm", status: val.latest });
+        return badgen({ label: "npm", status: val.latest }, options);
       } catch (err) {
         if (err.message === "pkg not found") {
-          return badgen({ label: "npm", status: "pkg not found" });
+          return badgen({ label: "npm", status: "pkg not found" }, options);
         } else {
-          return badgen(unknownErr);
+          return badgen(unknownErr, options);
         }
       }
     case "license":
@@ -135,7 +135,7 @@ async function handleNpm({ topic, pkgName }) {
         json: true,
         loadFn: async () => pkgJson(pkgName, "latest"),
       });
-      return badgen({ label: "license", status: info.license });
+      return badgen({ label: "license", status: info.license }, options);
     case "dt":
     case "dd":
     case "dw":
@@ -153,16 +153,16 @@ async function handleNpm({ topic, pkgName }) {
         json: true,
         loadFn: async () => download(map[topic], pkgName),
       });
-      return badgen(opts);
+      return badgen(opts, options);
     case "types":
       const def = await cachedExecute({
         key: pathname,
         json: true,
         loadFn: async () => typesDefinition(pkgName, "latest"),
       });
-      return badgen({ ...def, label: "types" });
+      return badgen({ ...def, label: "types" }, options);
     default:
-      return badgen(unknownErr);
+      return badgen(unknownErr, options);
   }
 }
 

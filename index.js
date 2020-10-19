@@ -11,7 +11,7 @@ import handleGitHub from "./mods/github";
 const router = new Router();
 
 async function routeHandler(ctx, handler) {
-  const badge = await handler(ctx.params);
+  const badge = await handler(ctx.params, ctx.query);
 
   ctx.body = badge;
   ctx.response.headers = {

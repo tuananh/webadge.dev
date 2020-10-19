@@ -1,5 +1,5 @@
 import config from "../config";
-import { badgen } from "badgen";
+import badgen from "../helpers/badge";
 
 const topicMap = {
   releases: "releases",
@@ -148,7 +148,7 @@ async function getLatestRelease({ owner, repo, channel }) {
   }
 }
 
-async function handleGitHub({ topic, owner, repo }) {
+async function handleGitHub({ topic, owner, repo }, options) {
   switch (topic) {
     case "releases":
     case "tags":
@@ -163,20 +163,26 @@ async function handleGitHub({ topic, owner, repo }) {
     case "forks":
     case "watchers":
       const info = await queryRepoStats({ topic, owner, repo });
-      return badgen({
-        subject: topic,
-        status: String(info[topicMap[topic]].totalCount),
-        color: "blue",
-      });
+      return badgen(
+        {
+          subject: topic,
+          status: String(info[topicMap[topic]].totalCount),
+          color: "blue",
+        },
+        options
+      );
     case "release":
       const opts = await getLatestRelease({ owner, repo, channel: "stable" });
-      return badgen(opts);
+      return badgen(opts, options);
     default:
-      return badgen({
-        subject: topic,
-        status: "unknown",
-        color: "grey",
-      });
+      return badgen(
+        {
+          subject: topic,
+          status: "unknown",
+          color: "grey",
+        },
+        options
+      );
   }
 }
 

@@ -1,11 +1,11 @@
-import { badgen } from "badgen";
+import badgen from "../helpers/badge";
 
 const errBadge = { subject: "packagephobia", status: "unknown", color: "grey" };
-async function handlePackagephobia(params) {
+async function handlePackagephobia(params, options) {
   let { topic, pkgName, scope, name } = params;
   if (scope && name) {
     if (!scope.startsWith("@")) {
-      return badgen(errBadge);
+      return badgen(errBadge, options);
     }
     pkgName = scope + "/" + name;
   }
@@ -16,22 +16,28 @@ async function handlePackagephobia(params) {
     const { install, publish } = await resp.json();
     switch (topic) {
       case "publish":
-        return badgen({
-          subject: "publish size",
-          status: publish.pretty,
-          color: publish.color.replace("#", ""),
-        });
+        return badgen(
+          {
+            subject: "publish size",
+            status: publish.pretty,
+            color: publish.color.replace("#", ""),
+          },
+          options
+        );
       case "install":
-        return badgen({
-          subject: "install size",
-          status: install.pretty,
-          color: install.color.replace("#", ""),
-        });
+        return badgen(
+          {
+            subject: "install size",
+            status: install.pretty,
+            color: install.color.replace("#", ""),
+          },
+          options
+        );
       default:
-        return badgen(errBadge);
+        return badgen(errBadge, options);
     }
   }
-  return badgen(errBadge);
+  return badgen(errBadge, options);
 }
 
 export default handlePackagephobia;

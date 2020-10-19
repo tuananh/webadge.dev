@@ -1,4 +1,4 @@
-import { badgen } from "badgen";
+import badgen from "../helpers/badge";
 import cachedExecute from "../helpers/cached-execute";
 
 const statuses = [
@@ -14,7 +14,7 @@ const statuses = [
   ["canceled", "grey"],
 ];
 
-async function handleTravisCI({ user, repo, branch = "master" }) {
+async function handleTravisCI({ user, repo, branch = "master" }, options) {
   const pathname = ["travis", user, repo, branch].join("/");
 
   const com = `https://api.travis-ci.com/${user}/${repo}.svg?branch=${branch}`;
@@ -39,17 +39,23 @@ async function handleTravisCI({ user, repo, branch = "master" }) {
   });
 
   if (result) {
-    return badgen({
-      subject: "travis",
-      status: result[0],
-      color: result[1],
-    });
+    return badgen(
+      {
+        subject: "travis",
+        status: result[0],
+        color: result[1],
+      },
+      options
+    );
   } else {
-    return badgen({
-      subject: "travis",
-      status: "unknown",
-      color: "grey",
-    });
+    return badgen(
+      {
+        subject: "travis",
+        status: "unknown",
+        color: "grey",
+      },
+      options
+    );
   }
 }
 
