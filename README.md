@@ -69,7 +69,10 @@ The goal of this project is
 
 ## Other styling options
 
-|            | Preview                                                                  | URL                                  |
-| ---------- | ------------------------------------------------------------------------ | ------------------------------------ |
-| flat style | ![](https://badge-staging.tuananh.net/badge/Swift/4.2/orange?style=flat) | `/badge/Swift/4.2/orange?style=flat` |
-| scale      | ![](https://badge-staging.tuananh.net/badge/Swift/4.2/orange?scale=2)    | `/badge/Swift/4.2/orange?scale=2`    |
+|            | Preview                                                                      | URL                                      |
+| ---------- | ---------------------------------------------------------------------------- | ---------------------------------------- |
+| flat style | ![](https://badge-staging.tuananh.net/badge/Swift/4.2/orange?style=flat)     | `/badge/Swift/4.2/orange?style=flat`     |
+| color      | ![](https://badge-staging.tuananh.net/npm/v/camaro?color=yellow)             | `/npm/v/camaro?color=yellow`             |
+| label      | ![](https://badge-staging.tuananh.net/npm/v/camaro?label=npm%20registry)     | `/npm/v/camaro?label=npm%20registry`     |
+| labelColor | ![](https://badge-staging.tuananh.net/npm/v/camaro?labelColor=red)           | `/npm/v/camaro?labelColor=red `          |
+| list       | ![](https://badge-staging.tuananh.net/badge/registry/npm,github/green?list=) | `/badge/registry/npm,github/green?list=` |
