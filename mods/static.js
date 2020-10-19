@@ -5,7 +5,7 @@ export default function handleStaticBadge({ label, status, color }, options) {
   try {
     return badgen(
       {
-        label: decodeURIComponent(label),
+        subject: decodeURIComponent(label),
         status: decodeURIComponent(status),
         color: decodeURIComponent(color),
       },

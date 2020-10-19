@@ -1,14 +1,17 @@
 import { badgen } from "badgen";
 import icons from "simple-icons";
 
-async function serveBadge(badge, options) {
+async function serveBadge(params, options) {
   Object.keys(options).forEach((key) => {
     switch (key) {
       case "list":
-        badge.status = badge.status.replaceAll(",", ` ${options.list || "|"} `);
+        params.status = params.status.replaceAll(
+          ",",
+          ` ${options.list || "|"} `
+        );
         break;
       case "icon":
-        const icon = icons.get(options.icon || badge.subject);
+        const icon = icons.get(options.icon || params.subject);
         if (icon) {
           options.icon = `data:image/svg+xml;base64,${Buffer.from(
             icon.svg
@@ -26,7 +29,7 @@ async function serveBadge(badge, options) {
     }
   });
 
-  return badgen({ ...badge, ...options });
+  return badgen({ ...params, ...options });
 }
 
 export default serveBadge;

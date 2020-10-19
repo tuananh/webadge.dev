@@ -17,7 +17,7 @@ async function handleBundlephobia({ topic, pkgName }, options) {
       case "min":
         return badgen(
           {
-            label: topic,
+            subject: topic,
             status: byteSize(size, { units: "iec" })
               .toString()
               .replace(/iB\b/, "B"),
@@ -27,7 +27,7 @@ async function handleBundlephobia({ topic, pkgName }, options) {
       case "minzip":
         return badgen(
           {
-            label: topic,
+            subject: topic,
             status: byteSize(gzip, { units: "iec" })
               .toString()
               .replace(/iB\b/, "B"),
@@ -38,7 +38,7 @@ async function handleBundlephobia({ topic, pkgName }, options) {
       case "dependency-count":
         return badgen(
           {
-            label: topic,
+            subject: topic,
             status: dependencyCount,
             color: "blue",
           },
@@ -48,7 +48,7 @@ async function handleBundlephobia({ topic, pkgName }, options) {
         const isTreeShakeable = hasJSModule || hasJSNext;
         return badgen(
           {
-            label: topic,
+            subject: topic,
             status: isTreeShakeable ? "supported" : "not supported",
             color: isTreeShakeable ? "green" : "red",
           },

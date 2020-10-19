@@ -97,7 +97,7 @@ async function typesDefinition(pkgName, tag = "latest") {
 
 async function handleNpm({ topic, pkgName }, options) {
   const pathname = ["npm", topic, pkgName].join("/");
-  const unknownErr = { label: "npm", status: "unknown", color: "grey" };
+  const unknownErr = { subject: "npm", status: "unknown", color: "grey" };
 
   switch (topic) {
     case "v":
@@ -121,10 +121,10 @@ async function handleNpm({ topic, pkgName }, options) {
           },
         });
 
-        return badgen({ label: "npm", status: val.latest }, options);
+        return badgen({ subject: "npm", status: val.latest }, options);
       } catch (err) {
         if (err.message === "pkg not found") {
-          return badgen({ label: "npm", status: "pkg not found" }, options);
+          return badgen({ subject: "npm", status: "pkg not found" }, options);
         } else {
           return badgen(unknownErr, options);
         }
@@ -135,7 +135,7 @@ async function handleNpm({ topic, pkgName }, options) {
         json: true,
         loadFn: async () => pkgJson(pkgName, "latest"),
       });
-      return badgen({ label: "license", status: info.license }, options);
+      return badgen({ subject: "license", status: info.license }, options);
     case "dt":
     case "dd":
     case "dw":
@@ -160,7 +160,7 @@ async function handleNpm({ topic, pkgName }, options) {
         json: true,
         loadFn: async () => typesDefinition(pkgName, "latest"),
       });
-      return badgen({ ...def, label: "types" }, options);
+      return badgen({ ...def, subject: "types" }, options);
     default:
       return badgen(unknownErr, options);
   }
