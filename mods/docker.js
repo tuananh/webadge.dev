@@ -1,7 +1,8 @@
 import millify from "millify";
 import badgen from "../helpers/badge";
 
-// TODO(anh): cache stuff, maybe consider using this cf
+// TODO(anh): cache stuff, maybe consider using this fech options provided by cf
+// along side with cachedExecute?
 // https://developers.cloudflare.com/workers/examples/cache-using-fetch
 const errBadge = {
   subject: "docker",
