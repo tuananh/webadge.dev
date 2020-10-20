@@ -55,6 +55,10 @@ The goal of this project is
 | GitHub open pull requests   | ![](https://staging.webadge.dev/github/open-prs/tuananh/camaro)              | `/github/open-prs/tuananh/camaro`              |
 | GitHub closed pull requests | ![](https://staging.webadge.dev/github/closed-prs/tuananh/camaro)            | `/github/closed-prs/tuananh/camaro`            |
 | GitHub merged pull requests | ![](https://staging.webadge.dev/github/merged-prs/tuananh/camaro)            | `/github/merged-prs/tuananh/camaro`            |
+| VS Marketplace version      | ![](https://staging.webadge.dev/vs-marketplace/v/buianhthang.xml2json)       | `/vs-marketplace/v/buianhthang.xml2json`       |
+| VS Marketplace installs     | ![](https://staging.webadge.dev/vs-marketplace/i/buianhthang.xml2json)       | `/vs-marketplace/i/buianhthang.xml2json`       |
+| VS Marketplace downloads    | ![](https://staging.webadge.dev/vs-marketplace/d/buianhthang.xml2json)       | `/vs-marketplace/d/buianhthang.xml2json`       |
+| VS Marketplace rating       | ![](https://staging.webadge.dev/vs-marketplace/rating/buianhthang.xml2json)  | `/vs-marketplace/rating/buianhthang.xml2json`  |
 
 ### Static badges
 

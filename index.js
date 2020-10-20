@@ -18,15 +18,23 @@ async function routeHandler(ctx, handler) {
 const handlerMap = {
   "/badge/:label/:status": handlers.badge,
   "/badge/:label/:status/:color": handlers.badge,
+
   "/npm/:topic/:pkgName": handlers.npm,
+
   "/github/:topic/:owner/:repo": handlers.github,
+
   "/bundlephobia/:topic/:pkgName": handlers.bundlephobia,
+
   "/packagephobia/:topic/:pkgName": handlers.packagephobia,
   "/packagephobia/:topic/:scope/:pkgName": handlers.packagephobia,
+
   "/travis/:user/:repo/:branch": handlers.travis,
   "/travis/:user/:repo": handlers.travis,
+
   "/appveyor/:account/:project/:branch": handlers.appveyor,
   "/appveyor/:account/:project": handlers.appveyor,
+
+  "/vs-marketplace/:topic/:pkgName": handlers.vsmarketplace,
 };
 
 Object.entries(handlerMap).map(([path, handler]) => {
