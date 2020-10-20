@@ -14,7 +14,7 @@ async function serveBadge(params, options) {
         const icon = icons.get(options.icon || params.subject);
         if (icon) {
           options.icon = `data:image/svg+xml;base64,${Buffer.from(
-            icon.svg
+            icon.svg.replace("<path ", '<path fill="white" ')
           ).toString("base64")}`;
           options.iconWidth = parseInt(options.iconWidth || 13);
         } else {
