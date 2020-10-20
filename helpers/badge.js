@@ -1,5 +1,5 @@
 import { badgen } from "badgen";
-import icons from "simple-icons";
+import icons from "badgen-icons";
 
 async function serveBadge(params, options) {
   Object.keys(options).forEach((key) => {
@@ -11,11 +11,9 @@ async function serveBadge(params, options) {
         );
         break;
       case "icon":
-        const icon = icons.get(options.icon || params.subject);
+        const icon = icons[options.icon || params.subject];
         if (icon) {
-          options.icon = `data:image/svg+xml;base64,${Buffer.from(
-            icon.svg.replace("<path ", '<path fill="white" ')
-          ).toString("base64")}`;
+          options.icon = icon.base64;
           options.iconWidth = parseInt(options.iconWidth || 13);
         } else {
           delete options.icon;
