@@ -10,16 +10,16 @@ vars = { GITHUB_TOKEN = "update this value" }
 
 [env.staging]
 name = "badge-staging"
-zone_id = "047c8ea67667f0773e8c6d162b2dd285"
-route = "badge-staging.tuananh.net/*"
+zone_id = "6b88c22fc374b7fcb114cbefe6b534e1"
+route = "staging.webadge.dev/*"
 kv-namespaces = [ 
     { binding = "badgeKV", id = "c5879b398e7e46888a48f7f7e836e868" } 
 ]
 
 [env.production]
 name = "badge-production"
-zone_id = "047c8ea67667f0773e8c6d162b2dd285"
-route = "badge.tuananh.net/*"
+zone_id = "6b88c22fc374b7fcb114cbefe6b534e1"
+route = "webadge.dev/*"
 kv-namespaces = [ 
     { binding = "badgeKV", id = "c17aac01aa874306be3474471bf84925" } 
 ]
