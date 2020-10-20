@@ -1,6 +1,7 @@
 import appveyor from "./appveyor";
 import badge from "./static";
 import bundlephobia from "./bundlephobia";
+import docker from "./docker";
 import github from "./github";
 import npm from "./npm";
 import packagephobia from "./packagephobia";
@@ -11,6 +12,7 @@ export {
   appveyor,
   badge,
   bundlephobia,
+  docker,
   github,
   npm,
   packagephobia,

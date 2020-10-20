@@ -35,6 +35,12 @@ const handlerMap = {
   "/appveyor/:account/:project": handlers.appveyor,
 
   "/vs-marketplace/:topic/:pkgName": handlers.vsmarketplace,
+  
+  "/docker/:topic/:scope/:name": handlers.docker.starPullHandler,
+  "/docker/size/:scope/:name/:tag": handlers.docker.sizeHandler,
+  "/docker/size/:scope/:name/:tag/:architecture": handlers.docker.sizeHandler,
+  "/docker/size/:scope/:name/:tag/:architecture/:variant":
+    handlers.docker.sizeHandler,
 };
 
 Object.entries(handlerMap).map(([path, handler]) => {
