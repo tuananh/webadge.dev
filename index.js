@@ -1,13 +1,23 @@
 import config from "./config";
+import badgen from "./helpers/badge";
+import cachedExecute from "./helpers/cached-execute";
 import Router from "cloudworker-router";
 import * as handlers from "./mods";
 
 const router = new Router();
 
 async function routeHandler(ctx, handler) {
-  const badge = await handler(ctx.params, ctx.query);
+  const { pathname } = new URL(request.url);
+  const body = await cachedExecute({
+    key: pathname,
+    json: true,
+    loadFn: async () => {
+      const badgeOpts = await handler(ctx.params);
+      return badgen(badgeOpts, ctx.query);
+    },
+  });
 
-  ctx.body = badge;
+  ctx.body = body;
   ctx.response.headers = {
     "content-type": "image/svg+xml",
     "Cache-Control": `max-age=${config.defaultCacheDurationSecond}`,
@@ -35,7 +45,7 @@ const handlerMap = {
   "/appveyor/:account/:project": handlers.appveyor,
 
   "/vs-marketplace/:topic/:pkgName": handlers.vsmarketplace,
-  
+
   "/docker/:topic/:scope/:name": handlers.docker.starPullHandler,
   "/docker/size/:scope/:name/:tag": handlers.docker.sizeHandler,
   "/docker/size/:scope/:name/:tag/:architecture": handlers.docker.sizeHandler,

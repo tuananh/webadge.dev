@@ -39,23 +39,17 @@ async function handleTravisCI({ user, repo, branch = "master" }, options) {
   });
 
   if (result) {
-    return badgen(
-      {
-        subject: "travis",
-        status: result[0],
-        color: result[1],
-      },
-      options
-    );
+    return {
+      subject: "travis",
+      status: result[0],
+      color: result[1],
+    };
   } else {
-    return badgen(
-      {
-        subject: "travis",
-        status: "unknown",
-        color: "grey",
-      },
-      options
-    );
+    return {
+      subject: "travis",
+      status: "unknown",
+      color: "grey",
+    };
   }
 }
 

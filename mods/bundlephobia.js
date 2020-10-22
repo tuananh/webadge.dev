@@ -15,64 +15,46 @@ async function handleBundlephobia({ topic, pkgName }, options) {
     } = await resp.json();
     switch (topic) {
       case "min":
-        return badgen(
-          {
-            subject: topic,
-            status: byteSize(size, { units: "iec" })
-              .toString()
-              .replace(/iB\b/, "B"),
-          },
-          options
-        );
+        return {
+          subject: topic,
+          status: byteSize(size, { units: "iec" })
+            .toString()
+            .replace(/iB\b/, "B"),
+        };
       case "minzip":
-        return badgen(
-          {
-            subject: topic,
-            status: byteSize(gzip, { units: "iec" })
-              .toString()
-              .replace(/iB\b/, "B"),
-            color: "blue",
-          },
-          options
-        );
+        return {
+          subject: topic,
+          status: byteSize(gzip, { units: "iec" })
+            .toString()
+            .replace(/iB\b/, "B"),
+          color: "blue",
+        };
       case "dependency-count":
-        return badgen(
-          {
-            subject: topic,
-            status: dependencyCount,
-            color: "blue",
-          },
-          options
-        );
+        return {
+          subject: topic,
+          status: dependencyCount,
+          color: "blue",
+        };
       case "tree-shaking":
         const isTreeShakeable = hasJSModule || hasJSNext;
-        return badgen(
-          {
-            subject: topic,
-            status: isTreeShakeable ? "supported" : "not supported",
-            color: isTreeShakeable ? "green" : "red",
-          },
-          options
-        );
+        return {
+          subject: topic,
+          status: isTreeShakeable ? "supported" : "not supported",
+          color: isTreeShakeable ? "green" : "red",
+        };
       default:
-        return badgen(
-          {
-            subject: "bundlephobia",
-            status: "unknown",
-            color: "grey",
-          },
-          options
-        );
+        return {
+          subject: "bundlephobia",
+          status: "unknown",
+          color: "grey",
+        };
     }
   }
-  return badgen(
-    {
-      subject: "bundlephobia",
-      status: "unknown",
-      color: "grey",
-    },
-    options
-  );
+  return {
+    subject: "bundlephobia",
+    status: "unknown",
+    color: "grey",
+  };
 }
 
 export default handleBundlephobia;

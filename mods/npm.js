@@ -1,5 +1,4 @@
 import millify from "millify";
-import badgen from "../helpers/badge";
 import cachedExecute from "../helpers/cached-execute";
 
 async function download(period, pkgName, tag = "latest") {
@@ -121,12 +120,12 @@ async function handleNpm({ topic, pkgName }, options) {
           },
         });
 
-        return badgen({ subject: "npm", status: val.latest }, options);
+        return { subject: "npm", status: val.latest };
       } catch (err) {
         if (err.message === "pkg not found") {
-          return badgen({ subject: "npm", status: "pkg not found" }, options);
+          return { subject: "npm", status: "pkg not found" };
         } else {
-          return badgen(unknownErr, options);
+          return unknownErr;
         }
       }
     case "license":
@@ -135,7 +134,7 @@ async function handleNpm({ topic, pkgName }, options) {
         json: true,
         loadFn: async () => pkgJson(pkgName, "latest"),
       });
-      return badgen({ subject: "license", status: info.license }, options);
+      return { subject: "license", status: info.license };
     case "dt":
     case "dd":
     case "dw":
@@ -153,16 +152,16 @@ async function handleNpm({ topic, pkgName }, options) {
         json: true,
         loadFn: async () => download(map[topic], pkgName),
       });
-      return badgen(opts, options);
+      return opts;
     case "types":
       const def = await cachedExecute({
         key: pathname,
         json: true,
         loadFn: async () => typesDefinition(pkgName, "latest"),
       });
-      return badgen({ ...def, subject: "types" }, options);
+      return { ...def, subject: "types" };
     default:
-      return badgen(unknownErr, options);
+      return unknownErr;
   }
 }
 

@@ -163,26 +163,20 @@ async function handleGitHub({ topic, owner, repo }, options) {
     case "forks":
     case "watchers":
       const info = await queryRepoStats({ topic, owner, repo });
-      return badgen(
-        {
-          subject: topic,
-          status: String(info[topicMap[topic]].totalCount),
-          color: "blue",
-        },
-        options
-      );
+      return {
+        subject: topic,
+        status: String(info[topicMap[topic]].totalCount),
+        color: "blue",
+      };
     case "release":
       const opts = await getLatestRelease({ owner, repo, channel: "stable" });
-      return badgen(opts, options);
+      return opts;
     default:
-      return badgen(
-        {
-          subject: topic,
-          status: "unknown",
-          color: "grey",
-        },
-        options
-      );
+      return {
+        subject: topic,
+        status: "unknown",
+        color: "grey",
+      };
   }
 }
 

@@ -8,23 +8,17 @@ async function handleAppveyor({ account, project, branch = "" }, options) {
   const resp = await fetch(url);
   if (resp.status === 200) {
     const { build } = await resp.json();
-    return badgen(
-      {
-        subject: "appveyor",
-        status: build.status,
-        color: build.status === "success" ? "green" : "red",
-      },
-      options
-    );
+    return {
+      subject: "appveyor",
+      status: build.status,
+      color: build.status === "success" ? "green" : "red",
+    };
   } else {
-    return badgen(
-      {
-        subject: "appveyor",
-        status: "unknown",
-        color: "grey",
-      },
-      options
-    );
+    return {
+      subject: "appveyor",
+      status: "unknown",
+      color: "grey",
+    };
   }
 }
 

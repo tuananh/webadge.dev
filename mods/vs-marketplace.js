@@ -32,49 +32,37 @@ async function handler(params, options) {
   const statistic = parseStatistic(ext);
   switch (topic) {
     case "v":
-      return badgen(
-        {
-          subject: "vs marketplace",
-          status: version(ext.versions[0].version),
-          color: versionColor(ext.versions[0].version),
-        },
-        options
-      );
+      return {
+        subject: "vs marketplace",
+        status: version(ext.versions[0].version),
+        color: versionColor(ext.versions[0].version),
+      };
     case "i":
-      return badgen(
-        {
-          subject: "installs",
-          status: millify(statistic.install),
-          color: "green",
-        },
-        options
-      );
+      return {
+        subject: "installs",
+        status: millify(statistic.install),
+        color: "green",
+      };
     case "d":
-      return badgen(
-        {
-          subject: "downloads",
-          status: millify(statistic.install + statistic.updateCount),
-          color: "green",
-        },
-        options
-      );
+      return {
+        subject: "downloads",
+        status: millify(statistic.install + statistic.updateCount),
+        color: "green",
+      };
     case "rating":
-      return badgen(
-        {
-          subject: "rating",
-          status: `${statistic.averagerating.toFixed(1)}/5 (${
-            statistic.ratingcount
-          })`,
-          color: "green",
-        },
-        options
-      );
+      return {
+        subject: "rating",
+        status: `${statistic.averagerating.toFixed(1)}/5 (${
+          statistic.ratingcount
+        })`,
+        color: "green",
+      };
     default:
-      return badgen({
+      return {
         subject: "vs-marketplace",
         status: "unknown",
         color: "grey",
-      });
+      };
   }
 }
 

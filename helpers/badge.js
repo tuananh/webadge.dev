@@ -1,7 +1,7 @@
 import { badgen } from "badgen";
 import icons from "badgen-icons";
 
-async function serveBadge(params, options) {
+function serveBadge(params, options) {
   Object.keys(options).forEach((key) => {
     switch (key) {
       case "list":

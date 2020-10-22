@@ -3,16 +3,13 @@ import badgen from "../helpers/badge";
 const errBadge = { label: "static badge", status: "unknown", color: "grey" };
 export default function handleStaticBadge({ label, status, color }, options) {
   try {
-    return badgen(
-      {
-        subject: decodeURIComponent(label),
-        status: decodeURIComponent(status),
-        color: decodeURIComponent(color),
-      },
-      options
-    );
+    return {
+      subject: decodeURIComponent(label),
+      status: decodeURIComponent(status),
+      color: decodeURIComponent(color),
+    };
   } catch (err) {
     console.log("error serving static badge", err.message);
-    return badgen(errBadge);
+    return errBadge;
   }
 }
