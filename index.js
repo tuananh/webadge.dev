@@ -7,16 +7,14 @@ import * as handlers from "./mods";
 const router = new Router();
 
 async function routeHandler(ctx, handler) {
-  const { pathname } = new URL(request.url);
+  const { pathname } = new URL(ctx.request.href);
   const body = await cachedExecute({
-    key: pathname,
-    json: true,
+    key: "test:" + pathname,
     loadFn: async () => {
       const badgeOpts = await handler(ctx.params);
       return badgen(badgeOpts, ctx.query);
     },
   });
-
   ctx.body = body;
   ctx.response.headers = {
     "content-type": "image/svg+xml",

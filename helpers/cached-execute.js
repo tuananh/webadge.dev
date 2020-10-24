@@ -48,7 +48,7 @@ async function cachedExecute({ key, loadFn, json }) {
         return parseJsonOrNot(newVal, json);
       }
     } catch (err) {
-      console.log("error in " + loadFn.name);
+      console.log("error in " + err.message);
       throw err;
     }
   }
