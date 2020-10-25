@@ -1,7 +1,5 @@
-import badgen from "../helpers/badge";
-
-const errBadge = { label: "static badge", status: "unknown", color: "grey" };
-export default function handleStaticBadge({ label, status, color }, options) {
+const errBadge = { label: 'static badge', status: 'unknown', color: 'grey' };
+export default function handleStaticBadge({ label, status, color }) {
   try {
     return {
       subject: decodeURIComponent(label),
@@ -9,7 +7,7 @@ export default function handleStaticBadge({ label, status, color }, options) {
       color: decodeURIComponent(color),
     };
   } catch (err) {
-    console.log("error serving static badge", err.message);
+    console.log('error serving static badge', err.message);
     return errBadge;
   }
 }
