@@ -1,13 +1,12 @@
-import badgen from "../helpers/badge";
-
-const errBadge = { subject: "packagephobia", status: "unknown", color: "grey" };
-async function handlePackagephobia(params, options) {
-  let { topic, pkgName, scope, name } = params;
+const errBadge = { subject: 'packagephobia', status: 'unknown', color: 'grey' };
+async function handlePackagephobia(params) {
+  const { topic, scope, name } = params;
+  let { pkgName } = params;
   if (scope && name) {
-    if (!scope.startsWith("@")) {
+    if (!scope.startsWith('@')) {
       return errBadge;
     }
-    pkgName = scope + "/" + name;
+    pkgName = `${scope}/${name}`;
   }
   const endpoint = `https://packagephobia.com/v2/api.json?p=${pkgName}`;
   const resp = await fetch(endpoint);
@@ -15,23 +14,23 @@ async function handlePackagephobia(params, options) {
   if (resp.status === 200) {
     const { install, publish } = await resp.json();
     switch (topic) {
-      case "publish":
+      case 'publish':
         return {
-          subject: "publish size",
+          subject: 'publish size',
           status: publish.pretty,
-          color: publish.color.replace("#", ""),
+          color: publish.color.replace('#', ''),
         };
-      case "install":
+      case 'install':
         return {
-          subject: "install size",
+          subject: 'install size',
           status: install.pretty,
-          color: install.color.replace("#", ""),
+          color: install.color.replace('#', ''),
         };
       default:
         return errBadge;
     }
-    return errBadge;
   }
+  return errBadge;
 }
 
 export default handlePackagephobia;
