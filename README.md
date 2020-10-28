@@ -22,43 +22,49 @@ The goal of this project is
 
 ### Live badges
 
-|                             | Preview                                                                      | URL                                            |
-| --------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------- |
-| npm version                 | ![](https://staging.webadge.dev/npm/v/camaro)                                | `/npm/v/camaro`                                |
-| npm license                 | ![](https://staging.webadge.dev/npm/license/camaro)                          | `/npm/license/camaro`                          |
-| npm types                   | ![](https://staging.webadge.dev/npm/types/camaro)                            | `/npm/types/camaro`                            |
-| npm downloads per week      | ![](https://staging.webadge.dev/npm/dw/lodash)                               | `/npm/dw/lodash`                               |
-| npm downloads per month     | ![](https://staging.webadge.dev/npm/dm/lodash)                               | `/npm/dm/lodash`                               |
-| npm downloads per year      | ![](https://staging.webadge.dev/npm/dy/lodash)                               | `/npm/dy/lodash`                               |
-| npm downloads total         | ![](https://staging.webadge.dev/npm/dt/lodash)                               | `/npm/dt/lodash`                               |
-| Travis CI (build)           | ![](https://staging.webadge.dev/travis/tuananh/camaro)                       | `/travis/tuananh/camaro`                       |
-| Travis CI (build - branch)  | ![](https://staging.webadge.dev/travis/tuananh/camaro/master)                | `/travis/tuananh/camaro`                       |
-| Appveyor (build)            | ![](https://staging.webadge.dev/appveyor/tuananh/camaro)                     | `/appveyor/tuananh/camaro`                     |
-| Appveyor (build - branch)   | ![](https://staging.webadge.dev/appveyor/tuananh/camaro/master)              | `/appveyor/tuananh/camaro/master`              |
-| bundlephobia min            | ![](https://staging.webadge.dev/bundlephobia/min/camaro)                     | `/bundlephobia/min/camaro`                     |
-| bundlephobia minzip         | ![](https://staging.webadge.dev/bundlephobia/minzip/camaro)                  | `/bundlephobia/minzip/camaro`                  |
-| bundlephobia tree-shaking   | ![](https://staging.webadge.dev/bundlephobia/tree-shaking/camaro)            | `/bundlephobia/tree-shaking/camaro`            |
-| bundlephobia tree-shaking   | ![](https://staging.webadge.dev/bundlephobia/tree-shaking/date-fns)          | `/bundlephobia/tree-shaking/date-fns`          |
-| packagephobia publish size  | ![](https://staging.webadge.dev/packagephobia/publish/camaro)                | `/packagephobia/publish/camaro`                |
-| packagephobia install size  | ![](https://staging.webadge.dev/packagephobia/install/camaro)                | `/packagephobia/install/camaro`                |
-| packagephobia scoped pkg    | ![](https://staging.webadge.dev/packagephobia/publish/@tusbar/cache-control) | `/packagephobia/publish/@tusbar/cache-control` |
-| GitHub releases count       | ![](https://staging.webadge.dev/github/releases/tuananh/camaro)              | `/github/releases/tuananh/camaro`              |
-| GitHub tags count           | ![](https://staging.webadge.dev/github/tags/tuananh/camaro)                  | `/github/tags/tuananh/camaro`                  |
-| GitHub latest release       | ![](https://staging.webadge.dev/github/release/tuananh/camaro)               | `/github/release/tuananh/camaro`               |
-| GitHub stars                | ![](https://staging.webadge.dev/github/stars/tuananh/camaro)                 | `/github/stars/tuananh/camaro`                 |
-| GitHub watchers             | ![](https://staging.webadge.dev/github/watchers/tuananh/camaro)              | `/github/watchers/tuananh/camaro`              |
-| GitHub forks                | ![](https://staging.webadge.dev/github/forks/tuananh/camaro)                 | `/github/forks/tuananh/camaro`                 |
-| GitHub issues               | ![](https://staging.webadge.dev/github/issues/tuananh/camaro)                | `/github/issues/tuananh/camaro`                |
-| GitHub open issues          | ![](https://staging.webadge.dev/github/open-issues/tuananh/camaro)           | `/github/open-issues/tuananh/camaro`           |
-| GitHub closed issues        | ![](https://staging.webadge.dev/github/closed-issues/tuananh/camaro)         | `/github/closed-issues/tuananh/camaro`         |
-| GitHub pull requests        | ![](https://staging.webadge.dev/github/prs/tuananh/camaro)                   | `/github/prs/tuananh/camaro`                   |
-| GitHub open pull requests   | ![](https://staging.webadge.dev/github/open-prs/tuananh/camaro)              | `/github/open-prs/tuananh/camaro`              |
-| GitHub closed pull requests | ![](https://staging.webadge.dev/github/closed-prs/tuananh/camaro)            | `/github/closed-prs/tuananh/camaro`            |
-| GitHub merged pull requests | ![](https://staging.webadge.dev/github/merged-prs/tuananh/camaro)            | `/github/merged-prs/tuananh/camaro`            |
-| VS Marketplace version      | ![](https://staging.webadge.dev/vs-marketplace/v/buianhthang.xml2json)       | `/vs-marketplace/v/buianhthang.xml2json`       |
-| VS Marketplace installs     | ![](https://staging.webadge.dev/vs-marketplace/i/buianhthang.xml2json)       | `/vs-marketplace/i/buianhthang.xml2json`       |
-| VS Marketplace downloads    | ![](https://staging.webadge.dev/vs-marketplace/d/buianhthang.xml2json)       | `/vs-marketplace/d/buianhthang.xml2json`       |
-| VS Marketplace rating       | ![](https://staging.webadge.dev/vs-marketplace/rating/buianhthang.xml2json)  | `/vs-marketplace/rating/buianhthang.xml2json`  |
+|                                               | Preview                                                                              | URL                                                   |
+| --------------------------------------------- | ------------------------------------------------------------------------------------ | ----------------------------------------------------- |
+| npm version                                   | ![](https://staging.webadge.dev/npm/v/camaro)                                        | `/npm/v/camaro`                                       |
+| npm license                                   | ![](https://staging.webadge.dev/npm/license/camaro)                                  | `/npm/license/camaro`                                 |
+| npm types                                     | ![](https://staging.webadge.dev/npm/types/camaro)                                    | `/npm/types/camaro`                                   |
+| npm downloads per week                        | ![](https://staging.webadge.dev/npm/dw/lodash)                                       | `/npm/dw/lodash`                                      |
+| npm downloads per month                       | ![](https://staging.webadge.dev/npm/dm/lodash)                                       | `/npm/dm/lodash`                                      |
+| npm downloads per year                        | ![](https://staging.webadge.dev/npm/dy/lodash)                                       | `/npm/dy/lodash`                                      |
+| npm downloads total                           | ![](https://staging.webadge.dev/npm/dt/lodash)                                       | `/npm/dt/lodash`                                      |
+| Travis CI (build)                             | ![](https://staging.webadge.dev/travis/tuananh/camaro)                               | `/travis/tuananh/camaro`                              |
+| Travis CI (build - branch)                    | ![](https://staging.webadge.dev/travis/tuananh/camaro/master)                        | `/travis/tuananh/camaro`                              |
+| Appveyor (build)                              | ![](https://staging.webadge.dev/appveyor/tuananh/camaro)                             | `/appveyor/tuananh/camaro`                            |
+| Appveyor (build - branch)                     | ![](https://staging.webadge.dev/appveyor/tuananh/camaro/master)                      | `/appveyor/tuananh/camaro/master`                     |
+| bundlephobia min                              | ![](https://staging.webadge.dev/bundlephobia/min/camaro)                             | `/bundlephobia/min/camaro`                            |
+| bundlephobia minzip                           | ![](https://staging.webadge.dev/bundlephobia/minzip/camaro)                          | `/bundlephobia/minzip/camaro`                         |
+| bundlephobia tree-shaking                     | ![](https://staging.webadge.dev/bundlephobia/tree-shaking/camaro)                    | `/bundlephobia/tree-shaking/camaro`                   |
+| bundlephobia tree-shaking                     | ![](https://staging.webadge.dev/bundlephobia/tree-shaking/date-fns)                  | `/bundlephobia/tree-shaking/date-fns`                 |
+| packagephobia publish size                    | ![](https://staging.webadge.dev/packagephobia/publish/camaro)                        | `/packagephobia/publish/camaro`                       |
+| packagephobia install size                    | ![](https://staging.webadge.dev/packagephobia/install/camaro)                        | `/packagephobia/install/camaro`                       |
+| packagephobia scoped pkg                      | ![](https://staging.webadge.dev/packagephobia/publish/@tusbar/cache-control)         | `/packagephobia/publish/@tusbar/cache-control`        |
+| GitHub releases count                         | ![](https://staging.webadge.dev/github/releases/tuananh/camaro)                      | `/github/releases/tuananh/camaro`                     |
+| GitHub tags count                             | ![](https://staging.webadge.dev/github/tags/tuananh/camaro)                          | `/github/tags/tuananh/camaro`                         |
+| GitHub latest release                         | ![](https://staging.webadge.dev/github/release/tuananh/camaro)                       | `/github/release/tuananh/camaro`                      |
+| GitHub stars                                  | ![](https://staging.webadge.dev/github/stars/tuananh/camaro)                         | `/github/stars/tuananh/camaro`                        |
+| GitHub watchers                               | ![](https://staging.webadge.dev/github/watchers/tuananh/camaro)                      | `/github/watchers/tuananh/camaro`                     |
+| GitHub forks                                  | ![](https://staging.webadge.dev/github/forks/tuananh/camaro)                         | `/github/forks/tuananh/camaro`                        |
+| GitHub issues                                 | ![](https://staging.webadge.dev/github/issues/tuananh/camaro)                        | `/github/issues/tuananh/camaro`                       |
+| GitHub open issues                            | ![](https://staging.webadge.dev/github/open-issues/tuananh/camaro)                   | `/github/open-issues/tuananh/camaro`                  |
+| GitHub closed issues                          | ![](https://staging.webadge.dev/github/closed-issues/tuananh/camaro)                 | `/github/closed-issues/tuananh/camaro`                |
+| GitHub pull requests                          | ![](https://staging.webadge.dev/github/prs/tuananh/camaro)                           | `/github/prs/tuananh/camaro`                          |
+| GitHub open pull requests                     | ![](https://staging.webadge.dev/github/open-prs/tuananh/camaro)                      | `/github/open-prs/tuananh/camaro`                     |
+| GitHub closed pull requests                   | ![](https://staging.webadge.dev/github/closed-prs/tuananh/camaro)                    | `/github/closed-prs/tuananh/camaro`                   |
+| GitHub merged pull requests                   | ![](https://staging.webadge.dev/github/merged-prs/tuananh/camaro)                    | `/github/merged-prs/tuananh/camaro`                   |
+| VS Marketplace version                        | ![](https://staging.webadge.dev/vs-marketplace/v/buianhthang.xml2json)               | `/vs-marketplace/v/buianhthang.xml2json`              |
+| VS Marketplace installs                       | ![](https://staging.webadge.dev/vs-marketplace/i/buianhthang.xml2json)               | `/vs-marketplace/i/buianhthang.xml2json`              |
+| VS Marketplace downloads                      | ![](https://staging.webadge.dev/vs-marketplace/d/buianhthang.xml2json)               | `/vs-marketplace/d/buianhthang.xml2json`              |
+| VS Marketplace rating                         | ![](https://staging.webadge.dev/vs-marketplace/rating/buianhthang.xml2json)          | `/vs-marketplace/rating/buianhthang.xml2json`         |
+| Docker pulls                                  | ![](https://staging.webadge.dev/docker/pulls/library/ubuntu)                         | `/docker/pulls/library/ubuntu`                        |
+| Docker size                                   | ![](https://staging.webadge.dev/docker/size/library/ubuntu)                          | `/docker/size/library/ubuntu`                         |
+| Docker star                                   | ![](https://staging.webadge.dev/docker/stars/library/ubuntu)                         | `/docker/stars/library/ubuntu`                        |
+| Docker stars (icon & label)                   | ![](https://staging.webadge.dev/docker/stars/library/ubuntu?icon=docker?label=stars) | `/docker/stars/library/mongo?icon=docker&label=stars` |
+| Docker size (scoped/tag/architecture)         | ![](https://staging.webadge.dev//docker/size/lukechilds/bitcoind/latest/amd64)       | `/docker/size/lukechilds/bitcoind/latest/amd64`       |
+| Docker size (scoped/tag/architecture/variant) | ![](https://staging.webadge.dev/docker/size/lucashalbert/curl/latest/arm/v6)         | `/docker/size/lucashalbert/curl/latest/arm/v6`        |
 
 ### Static badges
 

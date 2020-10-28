@@ -1,15 +1,15 @@
-import config from "./config";
-import badgen from "./helpers/badge";
-import cachedExecute from "./helpers/cached-execute";
-import Router from "cloudworker-router";
-import * as handlers from "./mods";
+import Router from 'cloudworker-router';
+import config from './config';
+import badgen from './helpers/badge';
+import cachedExecute from './helpers/cached-execute';
+import * as handlers from './mods';
 
 const router = new Router();
 
 async function routeHandler(ctx, handler) {
   const { pathname } = new URL(ctx.request.href);
   const body = await cachedExecute({
-    key: "test:" + pathname,
+    key: `test:${pathname}`,
     loadFn: async () => {
       const badgeOpts = await handler(ctx.params);
       return badgen(badgeOpts, ctx.query);
@@ -17,44 +17,44 @@ async function routeHandler(ctx, handler) {
   });
   ctx.body = body;
   ctx.response.headers = {
-    "content-type": "image/svg+xml",
-    "Cache-Control": `max-age=${config.defaultCacheDurationSecond}`,
+    'content-type': 'image/svg+xml',
+    'Cache-Control': `max-age=${config.defaultCacheDurationSecond}`,
   };
   ctx.status = 200;
 }
 
 const handlerMap = {
-  "/badge/:label/:status": handlers.badge,
-  "/badge/:label/:status/:color": handlers.badge,
+  '/badge/:label/:status': handlers.badge,
+  '/badge/:label/:status/:color': handlers.badge,
 
-  "/npm/:topic/:pkgName": handlers.npm,
+  '/npm/:topic/:pkgName': handlers.npm,
 
-  "/github/:topic/:owner/:repo": handlers.github,
+  '/github/:topic/:owner/:repo': handlers.github,
 
-  "/bundlephobia/:topic/:pkgName": handlers.bundlephobia,
+  '/bundlephobia/:topic/:pkgName': handlers.bundlephobia,
 
-  "/packagephobia/:topic/:pkgName": handlers.packagephobia,
-  "/packagephobia/:topic/:scope/:pkgName": handlers.packagephobia,
+  '/packagephobia/:topic/:pkgName': handlers.packagephobia,
+  '/packagephobia/:topic/:scope/:pkgName': handlers.packagephobia,
 
-  "/travis/:user/:repo/:branch": handlers.travis,
-  "/travis/:user/:repo": handlers.travis,
+  '/travis/:user/:repo/:branch': handlers.travis,
+  '/travis/:user/:repo': handlers.travis,
 
-  "/appveyor/:account/:project/:branch": handlers.appveyor,
-  "/appveyor/:account/:project": handlers.appveyor,
+  '/appveyor/:account/:project/:branch': handlers.appveyor,
+  '/appveyor/:account/:project': handlers.appveyor,
 
-  "/vs-marketplace/:topic/:pkgName": handlers.vsmarketplace,
+  '/vs-marketplace/:topic/:pkgName': handlers.vsmarketplace,
 
-  "/docker/:topic/:scope/:name": handlers.docker.starPullHandler,
-  "/docker/size/:scope/:name/:tag": handlers.docker.sizeHandler,
-  "/docker/size/:scope/:name/:tag/:architecture": handlers.docker.sizeHandler,
-  "/docker/size/:scope/:name/:tag/:architecture/:variant":
-    handlers.docker.sizeHandler,
+  '/docker/:topic/:scope/:name': handlers.docker,
+  '/docker/:topic/:scope/:name/:tag': handlers.docker,
+  '/docker/:topic/:scope/:name/:tag/:architecture': handlers.docker,
+  '/docker/:topic/:scope/:name/:tag/:architecture/:variant': handlers.docker,
 };
 
-Object.entries(handlerMap).map(([path, handler]) => {
+Object.entries(handlerMap).forEach(([path, handler]) => {
   router.get(path, (ctx) => routeHandler(ctx, handler));
 });
 
+// eslint-disable-next-line
 addEventListener("fetch", (event) => {
   event.respondWith(router.resolve(event));
 });

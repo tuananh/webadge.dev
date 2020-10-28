@@ -1,92 +1,49 @@
-import millify from "millify";
-import badgen from "../helpers/badge";
+import millify from 'millify';
 
-// TODO(anh): cache stuff, maybe consider using this fech options provided by cf
-// along side with cachedExecute?
-// https://developers.cloudflare.com/workers/examples/cache-using-fetch
 const errBadge = {
-  subject: "docker",
-  status: "unknown topic",
-  color: "grey",
+  subject: 'docker',
+  status: 'unknown error',
+  color: 'grey',
 };
-async function starPullHandler({ topic, scope, name }, options) {
-  if (!["stars", "pulls"].includes(topic)) {
-    return badgen(errBadge, options);
-  }
 
-  const url = `https://hub.docker.com/v2/repositories/${scope}/${name}`;
-  const resp = await fetch(url);
-  if (resp.status === 200) {
-    const { pull_count, star_count } = await resp.json();
-
-    switch (topic) {
-      case "stars":
-        return badgen(
-          {
-            subject: "docker stars",
-            status: millify(star_count),
-            color: "blue",
-          },
-          options
-        );
-      case "pulls":
-        return badgen(
-          {
-            subject: "docker pulls",
-            status: millify(pull_count),
-            color: "blue",
-          },
-          options
-        );
-    }
-  } else {
-    return badgen(errBadge, options);
-  }
-}
-
-async function sizeHandler(
-  { scope, name, tag, architecture, variant },
-  options
-) {
+async function sizeHandler({
+  scope, name, tag, architecture, variant,
+}) {
+  /* eslint-disable */
   tag = tag || "latest";
   architecture = architecture || "amd64";
   variant = variant || "";
+  /* eslint-enable */
   const url = `https://hub.docker.com/v2/repositories/${scope}/${name}/tags`;
   let resp = await fetch(url);
   if (resp.status === 200) {
     let body = await resp.json();
     let results = [...body.results];
     while (body.next) {
-      resp = await fetch(body.next);
-      body = await resp.json();
+      resp = await fetch(body.next); // eslint-disable-line
+      body = await resp.json(); // eslint-disable-line
       results = [...results, ...body.results];
     }
 
-    const tagData = results.find((tagData) => tagData.name === tag);
+    const tagData = results.find((i) => i.name === tag);
     if (!tagData) {
-      return badgen(
-        {
-          subject: "docker",
-          status: "unknown tag",
-          color: "grey",
-        },
-        options
-      );
+      return {
+        subject: 'docker',
+        status: 'unknown tag',
+        color: 'grey',
+      };
     }
 
     let imageData = tagData.images.find(
-      (image) => image.architecture === architecture
+      (image) => image.architecture === architecture,
     );
 
     if (!imageData) {
-      return badgen(
-        {
-          subject: "docker",
-          status: "unknown architecture",
-          color: "grey",
-        },
-        options
-      );
+      return {
+        subject: 'docker',
+        status: 'unknown architecture',
+        color: 'grey',
+      };
     }
 
     if (variant) {
@@ -95,28 +52,66 @@ async function sizeHandler(
         .find((image) => image.variant === variant);
 
       if (!imageData) {
-        return badgen(
-          {
-            subject: "docker",
-            status: "unknown variant",
-            color: "grey",
-          },
-          options
-        );
+        return {
+          subject: 'docker',
+          status: 'unknown variant',
+          color: 'grey',
+        };
       }
     }
 
     const sizeInMegabytes = (imageData.size / 1024 / 1024).toFixed(2);
 
-    return badgen(
-      {
-        subject: "docker image size",
-        status: `${sizeInMegabytes} MB`,
-        color: "blue",
-      },
-      options
-    );
+    return {
+      subject: 'docker image size',
+      status: `${sizeInMegabytes} MB`,
+      color: 'blue',
+    };
+  }
+
+  return errBadge;
+}
+
+async function dockerHandler({
+  topic,
+  scope,
+  name,
+  tag,
+  architecture,
+  variant,
+}) {
+  if (!['stars', 'pulls', 'size'].includes(topic)) {
+    return errBadge;
+  }
+
+  const url = `https://hub.docker.com/v2/repositories/${scope}/${name}`;
+  const resp = await fetch(url);
+  if (resp.status === 200) {
+    const { pull_count: pullCount, star_count: starCount } = await resp.json();
+
+    switch (topic) {
+      case 'stars':
+        return {
+          subject: 'docker stars',
+          status: millify(starCount),
+          color: 'blue',
+        };
+      case 'pulls':
+        return {
+          subject: 'docker pulls',
+          status: millify(pullCount),
+          color: 'blue',
+        };
+      case 'size':
+        return sizeHandler({
+          scope, name, tag, architecture, variant,
+        });
+      default:
+        return errBadge;
+    }
+  } else {
+    return errBadge;
   }
 }
 
-export default { starPullHandler, sizeHandler };
+export default dockerHandler;
